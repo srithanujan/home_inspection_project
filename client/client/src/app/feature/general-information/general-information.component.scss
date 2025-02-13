@@ -1,0 +1,19 @@
+.custom-card {
+  // width: 80%;
+  max-width: 98%;
+  padding: 20px;
+  margin: 20px;
+}
+
+@media (max-width: 768px) {
+  .custom-card {
+    padding: 10px;
+    margin: 10px;
+  }
+}
+.sub-head {
+  margin-top: 10px !important;
+  color: darkgray;
+}
+
+

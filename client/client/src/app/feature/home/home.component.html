@@ -1,0 +1,344 @@
+<div class="container-fluid container-top">
+  <mat-stepper [linear]="false" #stepper>
+    <mat-step [stepControl]="combinedDetails">
+      <ng-template matStepLabel>
+        <span class="vertical-label">GENERAL INFORMATION</span>
+      </ng-template>
+      <app-general-information
+        [combinedDetails]="combinedDetails"
+      ></app-general-information>
+      <div class="button-container">
+        <button
+          mat-flat-button
+          matStepperNext
+          (click)="addGeneralInformation(combinedDetails.value)"
+        >
+          Save
+        </button>
+      </div>
+    </mat-step>
+    <mat-step [stepControl]="buildingDetails">
+      <ng-template matStepLabel>
+        <span class="vertical-label">BUILDING DATA</span>
+      </ng-template>
+      <app-building-data
+        [buildingDetails]="buildingDetails"
+      ></app-building-data>
+      <div class="button-container">
+        <button class="button-back" mat-stroked-button matStepperPrevious>
+          Back
+        </button>
+        <button
+          mat-flat-button
+          matStepperNext
+          (click)="addBuildingData(buildingDetails.value)"
+        >
+          Save
+        </button>
+      </div>
+    </mat-step>
+    <mat-step [stepControl]="lotsGroundsDetails">
+      <ng-template matStepLabel>
+        <span class="vertical-label">LOTS AND GROUNDS</span>
+      </ng-template>
+      <app-lots-and-grounds
+        [lotsGroundsDetails]="lotsGroundsDetails"
+      ></app-lots-and-grounds>
+      <div class="button-container">
+        <button class="button-back" mat-stroked-button matStepperPrevious>
+          Back
+        </button>
+        <button
+          mat-flat-button
+          matStepperNext
+          (click)="addLotsAndGrounds(lotsGroundsDetails.value)"
+        >
+          Save
+        </button>
+      </div>
+    </mat-step>
+
+    <mat-step [stepControl]="roofDetails">
+      <ng-template matStepLabel>
+        <span class="vertical-label">ROOF</span>
+      </ng-template>
+      <app-roof [roofDetails]="roofDetails"></app-roof>
+      <div class="button-container">
+        <button class="button-back" mat-stroked-button matStepperPrevious>
+          Back
+        </button>
+        <button
+          mat-flat-button
+          matStepperNext
+          (click)="addRoofDetails(roofDetails.value)"
+        >
+          Save
+        </button>
+      </div>
+    </mat-step>
+
+    <mat-step [stepControl]="exteriorDetails">
+      <ng-template matStepLabel>
+        <span class="vertical-label">EXTERIOR</span>
+      </ng-template>
+      <app-exterior [exteriorDetails]="exteriorDetails"></app-exterior>
+      <div class="button-container">
+        <button class="button-back" mat-stroked-button matStepperPrevious>
+          Back
+        </button>
+        <button
+          mat-flat-button
+          matStepperNext
+          (click)="addExteriorDetails(exteriorDetails.value)"
+        >
+          Save
+        </button>
+      </div>
+    </mat-step>
+
+    <mat-step [stepControl]="garageCarportDetails">
+      <ng-template matStepLabel>
+        <span class="vertical-label">GARAGE/CARPORT</span>
+      </ng-template>
+      <app-garage-carport
+        [garageCarportDetails]="garageCarportDetails"
+      ></app-garage-carport>
+      <div class="button-container">
+        <button class="button-back" mat-stroked-button matStepperPrevious>
+          Back
+        </button>
+        <button
+          mat-flat-button
+          matStepperNext
+          (click)="addGarageCarportDetails(garageCarportDetails.value)"
+        >
+          Save
+        </button>
+      </div>
+    </mat-step>
+
+    <mat-step [stepControl]="kitchenDetails">
+      <ng-template matStepLabel>
+        <span class="vertical-label">KITCHEN</span>
+      </ng-template>
+      <app-kitchen [kitchenDetails]="kitchenDetails"></app-kitchen>
+      <div class="button-container">
+        <button class="button-back" mat-stroked-button matStepperPrevious>
+          Back
+        </button>
+        <button
+          mat-flat-button
+          matStepperNext
+          (click)="addKitchenDetails(kitchenDetails.value)"
+        >
+          Save
+        </button>
+      </div>
+    </mat-step>
+
+    <mat-step [stepControl]="bathroomsDetails">
+      <ng-template matStepLabel>
+        <span class="vertical-label">BATHROOMS</span>
+      </ng-template>
+      <app-bathrooms [bathroomsDetails]="bathroomsDetails"></app-bathrooms>
+      <div class="button-container">
+        <button class="button-back" mat-stroked-button matStepperPrevious>
+          Back
+        </button>
+        <button
+          mat-flat-button
+          matStepperNext
+          (click)="addBathroomDetails(bathroomsDetails.value)"
+        >
+          Save
+        </button>
+      </div>
+    </mat-step>
+
+    <mat-step [stepControl]="roomsDetails">
+      <ng-template matStepLabel>
+        <span class="vertical-label">ROOMS</span>
+      </ng-template>
+      <app-rooms [roomsDetails]="roomsDetails"></app-rooms>
+      <div class="button-container">
+        <button class="button-back" mat-stroked-button matStepperPrevious>
+          Back
+        </button>
+        <button
+          mat-flat-button
+          matStepperNext
+          (click)="addRoomDetails(roomsDetails.value)"
+        >
+          Save
+        </button>
+      </div>
+    </mat-step>
+
+    <mat-step [stepControl]="commonAreaDetails">
+      <ng-template matStepLabel>
+        <span class="vertical-label">COMMON AREAS</span>
+      </ng-template>
+      <app-common-area
+        [commonAreaDetails]="commonAreaDetails"
+      ></app-common-area>
+      <div class="button-container">
+        <button class="button-back" mat-stroked-button matStepperPrevious>
+          Back
+        </button>
+        <button
+          mat-flat-button
+          matStepperNext
+          (click)="addCommonAreaDetails(commonAreaDetails.value)"
+        >
+          Save
+        </button>
+      </div>
+    </mat-step>
+
+    <mat-step [stepControl]="laundryDetails">
+      <ng-template matStepLabel>
+        <span class="vertical-label">LAUNDRY</span>
+      </ng-template>
+      <app-laundry [laundryDetails]="laundryDetails"></app-laundry>
+      <div class="button-container">
+        <button class="button-back" mat-stroked-button matStepperPrevious>
+          Back
+        </button>
+        <button
+          mat-flat-button
+          matStepperNext
+          (click)="addLaundryDetails(laundryDetails.value)"
+        >
+          Save
+        </button>
+      </div>
+    </mat-step>
+
+    <mat-step [stepControl]="interiorDetails">
+      <ng-template matStepLabel>
+        <span class="vertical-label">INTERIOR</span>
+      </ng-template>
+      <app-interior [interiorDetails]="interiorDetails"></app-interior>
+      <div class="button-container">
+        <button class="button-back" mat-stroked-button matStepperPrevious>
+          Back
+        </button>
+        <button
+          mat-flat-button
+          matStepperNext
+          (click)="addInteriorDetails(interiorDetails.value)"
+        >
+          Save
+        </button>
+      </div>
+    </mat-step>
+
+    <mat-step [stepControl]="plumbingDetails">
+      <ng-template matStepLabel>
+        <span class="vertical-label">PLUMBING</span>
+      </ng-template>
+      <app-plumbing [plumbingDetails]="plumbingDetails"></app-plumbing>
+      <div class="button-container">
+        <button class="button-back" mat-stroked-button matStepperPrevious>
+          Back
+        </button>
+        <button
+          mat-flat-button
+          matStepperNext
+          (click)="addPlumbingDetails(plumbingDetails.value)"
+        >
+          Save
+        </button>
+      </div>
+    </mat-step>
+
+    <mat-step [stepControl]="heatingSystemDetails">
+      <ng-template matStepLabel>
+        <span class="vertical-label">HEATING SYSTEM</span>
+      </ng-template>
+      <app-heating-system
+        [heatingSystemDetails]="heatingSystemDetails"
+      ></app-heating-system>
+      <div class="button-container">
+        <button class="button-back" mat-stroked-button matStepperPrevious>
+          Back
+        </button>
+        <button
+          mat-flat-button
+          matStepperNext
+          (click)="addHeatingSystemDetails(heatingSystemDetails.value)"
+        >
+          Save
+        </button>
+      </div>
+    </mat-step>
+
+    <mat-step [stepControl]="electricalSystemDetails">
+      <ng-template matStepLabel>
+        <span class="vertical-label">ELECTRICAL SYSTEM</span>
+      </ng-template>
+      <app-electrical-system
+        [electricalSystemDetails]="electricalSystemDetails"
+      ></app-electrical-system>
+      <div class="button-container">
+        <button class="button-back" mat-stroked-button matStepperPrevious>
+          Back
+        </button>
+        <button
+          mat-flat-button
+          matStepperNext
+          (click)="addElectricalSystemDetails(electricalSystemDetails.value)"
+        >
+          Save
+        </button>
+      </div>
+    </mat-step>
+
+    <mat-step [stepControl]="basementDetails">
+      <ng-template matStepLabel>
+        <span class="vertical-label">BASEMENT</span>
+      </ng-template>
+      <app-basement [basementDetails]="basementDetails"></app-basement>
+      <div class="button-container">
+        <button class="button-back" mat-stroked-button matStepperPrevious>
+          Back
+        </button>
+        <button
+          mat-flat-button
+          matStepperNext
+          (click)="addBasementDetails(basementDetails.value)"
+        >
+          Save
+        </button>
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>
+        <span class="vertical-label">DONE</span>
+      </ng-template>
+      <br />
+      <div class="button-container">
+        <button
+          mat-flat-button
+          [hidden]="canGeneratePdf"
+          (click)="onSubmit()"
+          style="margin-right: 8px"
+        >
+          Submit
+        </button>
+        <button
+          mat-flat-button
+          [hidden]="!canGeneratePdf"
+          (click)="generatePDF(requestId)"
+          style="margin-right: 8px"
+        >
+          Generate PDF
+        </button>
+        <button mat-stroked-button matStepperPrevious style="margin-right: 8px">
+          Back
+        </button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</div>

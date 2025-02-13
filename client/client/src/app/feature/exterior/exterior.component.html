@@ -1,0 +1,1829 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card border-primary mb-3 custom-card">
+      <div class="row">
+        <h5 class="sub-head">EXTERIOR</h5>
+        <form [formGroup]="exteriorDetails" class="row g-3">
+          <h6 class="sub-head">
+            EXTERIOR WALL
+            <span
+              ><button mat-flat-button (click)="addExteriorWalls()">
+                Add Exterior Wall
+              </button></span
+            >&nbsp;<span></span>
+          </h6>
+          <div formArrayName="exteriorWall" class="row">
+            <div
+              *ngFor="let exteriorWall of exteriorWalls.controls; let i = index"
+              [formGroupName]="i"
+              class="row"
+            >
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Type</mat-label>
+                  <mat-select formControlName="exteriorWallType" multiple>
+                    <mat-option
+                      *ngFor="let option of exteriorWallTypeOptions"
+                      [value]="option"
+                      >{{ option }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div
+                class="col-md-6"
+                *ngIf="
+                  exteriorWall.get('exteriorWallType')?.value?.includes('Other')
+                "
+              >
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherExteriorWallType" />
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Condition</mat-label>
+                  <mat-select formControlName="exteriorWallCondition" multiple>
+                    <mat-option
+                      *ngFor="let option of exteriorWallConditionOptions"
+                      [value]="option"
+                      >{{ option }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div
+                class="col-md-6"
+                *ngIf="
+                  exteriorWall
+                    .get('exteriorWallCondition')
+                    ?.value?.includes('Other')
+                "
+              >
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input
+                    matInput
+                    formControlName="otherExteriorWallCondition"
+                  />
+                </mat-form-field>
+              </div>
+              <div class="col-md-12">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Comments</mat-label>
+                  <input matInput formControlName="exteriorWallComments" />
+                </mat-form-field>
+              </div>
+              <div class="col-md-12 text-end mb-3">
+                <button
+                  mat-flat-button
+                  (click)="removeExteriorWalls(i)"
+                  style="
+                    margin-right: 8px;
+                    background-color: #ed636d;
+                    color: white;
+                  "
+                >
+                  Remove
+                </button>
+              </div>
+              <app-image-uploader
+                [imageName]="exteriorWallImage + i"
+              ></app-image-uploader>
+            </div>
+          </div>
+
+          <h6 class="sub-head">FOUNDATION</h6>
+          <div formGroupName="foundation" class="row">
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Type</mat-label>
+                <mat-select formControlName="foundationType" multiple>
+                  <mat-option
+                    *ngFor="let option of foundationTypeOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-6"
+              *ngIf="
+                exteriorDetails
+                  ?.get('foundation.foundationType')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input matInput formControlName="otherFoundationType" />
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Condition</mat-label>
+                <mat-select
+                  formControlName="exteriorFoundationCondition"
+                  multiple
+                >
+                  <mat-option
+                    *ngFor="let option of foundationExteriorConditionOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div
+              class="col-md-6"
+              *ngIf="
+                exteriorDetails
+                  ?.get('foundation.exteriorFoundationCondition')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input
+                  matInput
+                  formControlName="otherExteriorFoundationCondition"
+                />
+              </mat-form-field>
+            </div>
+            <div class="col-md-12">
+              <mat-form-field class="general-full-width">
+                <mat-label>Comments</mat-label>
+                <mat-select formControlName="foundationComments" multiple>
+                  <mat-option
+                    *ngFor="let option of foundationExteriorCommentsOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div
+              class="col-md-12"
+              *ngIf="
+                exteriorDetails
+                  ?.get('foundation.foundationComments')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input matInput formControlName="otherFoundationComments" />
+              </mat-form-field>
+            </div>
+
+            <app-image-uploader
+              [imageName]="exteriorFoundationImage"
+            ></app-image-uploader>
+
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Condition</mat-label>
+                <mat-select
+                  formControlName="interiorFoundationCondition"
+                  multiple
+                >
+                  <mat-option
+                    *ngFor="let option of foundationInteriorConditionOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-6"
+              *ngIf="
+                exteriorDetails.get('foundation.interiorFoundationCondition')
+                  ?.value === 'Other'
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input
+                  matInput
+                  formControlName="otherInteriorFoundationCondition"
+                />
+              </mat-form-field>
+            </div>
+            <div class="col-md-12">
+              <mat-form-field class="general-full-width">
+                <mat-label>Comments</mat-label>
+                <mat-select
+                  formControlName="interiorFoundationComments"
+                  multiple
+                >
+                  <mat-option
+                    *ngFor="let option of foundationInteriorCommentsOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div
+              class="col-md-12"
+              *ngIf="
+                exteriorDetails
+                  .get('foundation.interiorFoundationComments')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input
+                  matInput
+                  formControlName="otherInteriorFoundationComments"
+                />
+              </mat-form-field>
+            </div>
+
+            <app-image-uploader
+              [imageName]="exteriorInteriorFoundationImage"
+            ></app-image-uploader>
+
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Cracks (Visible portion Only)</mat-label>
+                <mat-select formControlName="cracks" multiple>
+                  <mat-option
+                    *ngFor="let option of cracksVisiblePortionsOnlyOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-6"
+              *ngIf="
+                exteriorDetails
+                  .get('foundation.cracks')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input matInput formControlName="otherCracks" />
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Covered foundation walls</mat-label>
+                <mat-select formControlName="coveredFoundationWalls" multiple>
+                  <mat-option
+                    *ngFor="let option of coveredFoundationWallsOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-6"
+              *ngIf="
+                exteriorDetails
+                  .get('foundation.coveredFoundationWalls')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input matInput formControlName="otherCoveredFoundationWalls" />
+              </mat-form-field>
+            </div>
+            <div class="col-md-12">
+              <mat-form-field class="general-full-width">
+                <mat-label>Comments</mat-label>
+                <mat-select
+                  formControlName="coveredFoundationWallsComments"
+                  multiple
+                >
+                  <mat-option
+                    *ngFor="let option of foundationExteriorCommentsOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <app-image-uploader
+            [imageName]="exteriorCracksImage"
+          ></app-image-uploader>
+
+          <hr />
+          <div formGroupName="exteriorExteriorDoor" class="row">
+            <h6 class="sub-head">EXTERIOR DOOR</h6>
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Main Entry Door</mat-label>
+                <mat-select
+                  formControlName="exteriorDoorMainEntryDoor"
+                  multiple
+                >
+                  <mat-option
+                    *ngFor="let option of exteriorDoorMainEntryDoorOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-6"
+              *ngIf="
+                exteriorDetails
+                  .get('exteriorExteriorDoor.exteriorDoorMainEntryDoor')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input
+                  matInput
+                  formControlName="otherExteriorDoorMainEntryDoor"
+                />
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Door Condition</mat-label>
+                <mat-select
+                  formControlName="exteriorDoorDoorCondition"
+                  multiple
+                >
+                  <mat-option
+                    *ngFor="
+                      let option of exteriorDoorMainEntryDoorConditionOptions
+                    "
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-6"
+              *ngIf="
+                exteriorDetails
+                  .get('exteriorExteriorDoor.exteriorDoorDoorCondition')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input
+                  matInput
+                  formControlName="otherExteriorDoorDoorCondition"
+                />
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Weather Stripping</mat-label>
+                <mat-select
+                  formControlName="exteriorDoorWeatherStripping"
+                  multiple
+                >
+                  <mat-option
+                    *ngFor="
+                      let option of exteriorDoorMainEntryDoorWeatherStrippingOptions
+                    "
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Storm Door</mat-label>
+                <mat-select formControlName="exteriorDoorStormDoor" multiple>
+                  <mat-option
+                    *ngFor="let option of exteriorDoorStormDoorOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Condition</mat-label>
+                <mat-select
+                  formControlName="exteriorDoorStormDoorCondition"
+                  multiple
+                >
+                  <mat-option
+                    *ngFor="
+                      let option of exteriorDoorStormDoorConditionsOptions
+                    "
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-6"
+              *ngIf="
+                exteriorDetails
+                  .get('exteriorExteriorDoor.exteriorDoorMainEntryDoor')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input
+                  matInput
+                  formControlName="otherExteriorDoorStormDoorCondition"
+                />
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Doorbell</mat-label>
+                <mat-select formControlName="exteriorDoorDoorBell" multiple>
+                  <mat-option
+                    *ngFor="let option of exteriorDoorDoorBellOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-6"
+              *ngIf="
+                exteriorDetails
+                  .get('exteriorExteriorDoor.exteriorDoorDoorBell')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input matInput formControlName="otherExteriorDoorDoorBell" />
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Type</mat-label>
+                <mat-select formControlName="exteriorDoorDoorBellType" multiple>
+                  <mat-option
+                    *ngFor="let option of exteriorDoorDoorBellTypeOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-6"
+              *ngIf="
+                exteriorDetails
+                  .get('exteriorExteriorDoor.exteriorDoorDoorBellType')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input
+                  matInput
+                  formControlName="otherExteriorDoorDoorBellType"
+                />
+              </mat-form-field>
+            </div>
+          </div>
+
+          <app-image-uploader
+            [imageName]="exteriorDoorImage"
+          ></app-image-uploader>
+
+          <hr />
+          <div formGroupName="exteriorSideDoor" class="row">
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Side Door</mat-label>
+                <mat-select formControlName="exteriorSideDoors" multiple>
+                  <mat-option
+                    *ngFor="let option of exteriorDoorSideDoorOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-6"
+              *ngIf="
+                exteriorDetails
+                  .get('exteriorSideDoor.exteriorSideDoors')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input matInput formControlName="otherExteriorSideDoors" />
+              </mat-form-field>
+            </div>
+
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Door Condition</mat-label>
+                <mat-select
+                  formControlName="exteriorSideDoorsDoorCondition"
+                  multiple
+                >
+                  <mat-option
+                    *ngFor="let option of exteriorDoorSideDoorConditionsOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-6"
+              *ngIf="
+                exteriorDetails
+                  .get('exteriorSideDoor.exteriorSideDoorsDoorCondition')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input
+                  matInput
+                  formControlName="otherExteriorSideDoorsDoorCondition"
+                />
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Weather Stripping</mat-label>
+                <mat-select
+                  formControlName="exteriorSideDoorsWeatherStripping"
+                  multiple
+                >
+                  <mat-option
+                    *ngFor="
+                      let option of exteriorDoorSideDoorWeatherStrippingOptions
+                    "
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-6"
+              *ngIf="
+                exteriorDetails
+                  .get('exteriorSideDoor.exteriorSideDoorsWeatherStripping')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input
+                  matInput
+                  formControlName="otherExteriorSideDoorsWeatherStripping"
+                />
+              </mat-form-field>
+            </div>
+          </div>
+
+          <app-image-uploader
+            [imageName]="exteriorSideDoorImage"
+          ></app-image-uploader>
+
+          <hr />
+          <div formGroupName="exteriorPatioDoor" class="row">
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Patio Door</mat-label>
+                <mat-select formControlName="exteriorPatioDoors" multiple>
+                  <mat-option
+                    *ngFor="let option of exteriorDoorPatioDoorOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-6"
+              *ngIf="
+                exteriorDetails
+                  .get('exteriorPatioDoor.exteriorPatioDoors')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input matInput formControlName="otherExteriorPatioDoors" />
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Door Condition</mat-label>
+                <mat-select
+                  formControlName="exteriorPatioDoorsCondition"
+                  multiple
+                >
+                  <mat-option
+                    *ngFor="let option of exteriorDoorPatioDoorConditionOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-6"
+              *ngIf="
+                exteriorDetails
+                  .get('exteriorPatioDoor.exteriorPatioDoorsCondition')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input
+                  matInput
+                  formControlName="otherExteriorPatioDoorsCondition"
+                />
+              </mat-form-field>
+            </div>
+            <div class="col-md-12">
+              <mat-form-field class="general-full-width">
+                <mat-label>Comments</mat-label>
+                <mat-select
+                  formControlName="exteriorPatioDoorsComments"
+                  multiple
+                >
+                  <mat-option
+                    *ngFor="let option of exteriorDoorPatioDoorCommentsOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-12"
+              *ngIf="
+                exteriorDetails
+                  .get('exteriorPatioDoor.exteriorPatioDoorsComments')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input
+                  matInput
+                  formControlName="otherExteriorPatioDoorsComments"
+                />
+              </mat-form-field>
+            </div>
+          </div>
+
+          <app-image-uploader
+            [imageName]="exteriorPatioDoorImage"
+          ></app-image-uploader>
+
+          <hr />
+
+          <div formGroupName="exteriorPatioScreenDoor" class="row">
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Patio Screen Door</mat-label>
+                <mat-select
+                  formControlName="exteriorPatioScreensDoors"
+                  multiple
+                >
+                  <mat-option
+                    *ngFor="let option of exteriorDoorPatioScreenDoorOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-6"
+              *ngIf="
+                exteriorDetails
+                  .get('exteriorPatioScreenDoor.exteriorPatioScreensDoors')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input
+                  matInput
+                  formControlName="otherExteriorPatioScreensDoors"
+                />
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Door Condition</mat-label>
+                <mat-select
+                  formControlName="exteriorPatioDoorScreensCondition"
+                  multiple
+                >
+                  <mat-option
+                    *ngFor="
+                      let option of exteriorDoorPatioScreenDoorConditionsOptions
+                    "
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-6"
+              *ngIf="
+                exteriorDetails
+                  .get(
+                    'exteriorPatioScreenDoor.exteriorPatioDoorScreensCondition'
+                  )
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input
+                  matInput
+                  formControlName="otherExteriorPatioDoorScreesCondition"
+                />
+              </mat-form-field>
+            </div>
+            <div class="col-md-12">
+              <mat-form-field class="general-full-width">
+                <mat-label>Comments</mat-label>
+                <mat-select
+                  formControlName="exteriorPatioDoorScreensComments"
+                  multiple
+                >
+                  <mat-option
+                    *ngFor="
+                      let option of exteriorDoorPatioScreenDoorCommentsOptions
+                    "
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-12"
+              *ngIf="
+                exteriorDetails
+                  .get(
+                    'exteriorPatioScreenDoor.exteriorPatioDoorScreensComments'
+                  )
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input
+                  matInput
+                  formControlName="otherExteriorPatioDoorScreensComments"
+                />
+              </mat-form-field>
+            </div>
+          </div>
+
+          <app-image-uploader
+            [imageName]="exteriorPatioScreenDoorImage"
+          ></app-image-uploader>
+
+          <div class="col-md-12">
+            <mat-form-field class="general-full-width">
+              <mat-label>Comments</mat-label>
+              <input matInput formControlName="exteriorDoorComments" />
+            </mat-form-field>
+          </div>
+
+          <div formGroupName="gutter" class="row">
+            <h6 class="sub-head">GUTTERS / DOWNSPOUTS / ROOF DRAINAGE</h6>
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Materials</mat-label>
+                <mat-select
+                  formControlName="guttersDownspoutsRoofDrainageMaterial"
+                  multiple
+                >
+                  <mat-option
+                    *ngFor="let option of guttersMaterialsOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-6"
+              *ngIf="
+                exteriorDetails
+                  .get('gutter.guttersDownspoutsRoofDrainageMaterial')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input
+                  matInput
+                  formControlName="otherGuttersDownspoutsRoofDrainageMaterial"
+                />
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Condition</mat-label>
+                <mat-select
+                  formControlName="guttersDownspoutsRoofDrainageCondition"
+                  multiple
+                >
+                  <mat-option
+                    *ngFor="let option of guttersMaterialsCondtionOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-6"
+              *ngIf="
+                exteriorDetails
+                  .get('gutter.guttersDownspoutsRoofDrainageCondition')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input
+                  matInput
+                  formControlName="otherGuttersDownspoutsRoofDrainageCondition"
+                />
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Leaking</mat-label>
+                <mat-select
+                  formControlName="guttersDownspoutsRoofDrainageLeaking"
+                  multiple
+                >
+                  <mat-option
+                    *ngFor="let option of guttersMaterialsLeakingOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-6"
+              *ngIf="
+                exteriorDetails
+                  .get('gutter.guttersDownspoutsRoofDrainageLeaking')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input
+                  matInput
+                  formControlName="otherGuttersDownspoutsRoofDrainageLeaking"
+                />
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Attachment</mat-label>
+                <mat-select
+                  formControlName="guttersDownspoutsRoofDrainageAttachment"
+                  multiple
+                >
+                  <mat-option
+                    *ngFor="let option of guttersMaterialsAttachmentsOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-6"
+              *ngIf="
+                exteriorDetails
+                  .get('gutter.guttersDownspoutsRoofDrainageAttachment')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input
+                  matInput
+                  formControlName="otherGuttersDownspoutsRoofDrainageAttachment"
+                />
+              </mat-form-field>
+            </div>
+
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Extension Needed</mat-label>
+                <mat-select
+                  formControlName="guttersDownspoutsRoofDrainageExtensionNeeded"
+                  multiple
+                >
+                  <mat-option
+                    *ngFor="
+                      let option of guttersMaterialsExtensionNeededOptions
+                    "
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-6"
+              *ngIf="
+                exteriorDetails
+                  .get('gutter.guttersDownspoutsRoofDrainageExtensionNeeded')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input
+                  matInput
+                  formControlName="otherGuttersDownspoutsRoofDrainageExtensionNeeded"
+                />
+              </mat-form-field>
+            </div>
+            <div class="col-md-12">
+              <mat-form-field class="general-full-width">
+                <mat-label>Comments</mat-label>
+                <mat-select
+                  formControlName="guttersDownspoutsRoofDrainageComments"
+                  multiple
+                >
+                  <mat-option
+                    *ngFor="let option of guttersMaterialsCommentsOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-12"
+              *ngIf="
+                exteriorDetails
+                  .get('gutter.guttersDownspoutsRoofDrainageComments')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input
+                  matInput
+                  formControlName="otherGuttersDownspoutsRoofDrainageComments"
+                />
+              </mat-form-field>
+            </div>
+
+            <app-image-uploader
+              [imageName]="exteriorGuttersRoofsRoofDrainageImage"
+            ></app-image-uploader>
+          </div>
+
+          <div formGroupName="window" class="row">
+            <h6 class="sub-head">WINDOWS</h6>
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Approximate Age</mat-label>
+                <mat-select formControlName="windowsApproximateAge" multiple>
+                  <mat-option
+                    *ngFor="let option of guttersWindowsApproximateAgeOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-6"
+              *ngIf="
+                exteriorDetails
+                  .get('window.windowsApproximateAge')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input matInput formControlName="otherWindowsApproximateAge" />
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Material and Type</mat-label>
+                <mat-select formControlName="windowsMaterialAndType" multiple>
+                  <mat-option
+                    *ngFor="let option of guttersWindowsMaterialAndTypeOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-6"
+              *ngIf="
+                exteriorDetails
+                  .get('window.windowsMaterialAndType')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input matInput formControlName="otherWindowsMaterialAndType" />
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Type</mat-label>
+                <mat-select formControlName="windowsCondition" multiple>
+                  <mat-option
+                    *ngFor="
+                      let option of guttersWindowsMaterialAndTypeConditionsOptions
+                    "
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-6"
+              *ngIf="
+                exteriorDetails
+                  .get('window.windowsCondition')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input matInput formControlName="otherWindowsCondition" />
+              </mat-form-field>
+            </div>
+            <div class="col-md-12">
+              <mat-form-field class="general-full-width">
+                <mat-label>Comments</mat-label>
+                <mat-select formControlName="windowsComments" multiple>
+                  <mat-option
+                    *ngFor="
+                      let option of guttersWindowsMaterialAndTypeCommentsOptions
+                    "
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-12"
+              *ngIf="
+                exteriorDetails
+                  .get('window.windowsComments')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input matInput formControlName="otherWindowsComments" />
+              </mat-form-field>
+            </div>
+
+            <app-image-uploader
+              [imageName]="exteriorWindowsMaterialImage"
+            ></app-image-uploader>
+
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Windows Screens</mat-label>
+                <mat-select formControlName="windowScreens" multiple>
+                  <mat-option
+                    *ngFor="let option of guttersWindowScreensOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Condition</mat-label>
+                <mat-select formControlName="windowScreensCondition" multiple>
+                  <mat-option
+                    *ngFor="let option of guttersWindowScreensConditionOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-6"
+              *ngIf="
+                exteriorDetails
+                  .get('window.windowScreensCondition')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input matInput formControlName="otherWindowScreensCondition" />
+              </mat-form-field>
+            </div>
+            <div class="col-md-12">
+              <mat-form-field class="general-full-width">
+                <mat-label>Comments</mat-label>
+                <mat-select formControlName="windowScreensComments" multiple>
+                  <mat-option
+                    *ngFor="let option of guttersWindowScreensCommentsOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-12"
+              *ngIf="
+                exteriorDetails
+                  .get('window.windowScreensComments')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input matInput formControlName="otherWindowScreensComments" />
+              </mat-form-field>
+            </div>
+
+            <app-image-uploader
+              [imageName]="exteriorWindowScreensImage"
+            ></app-image-uploader>
+
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Basement Windows</mat-label>
+                <input matInput formControlName="basementWindows" />
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Approximate Age</mat-label>
+                <input
+                  matInput
+                  formControlName="basementWindowsApproximateAge"
+                />
+              </mat-form-field>
+            </div>
+
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Material</mat-label>
+                <mat-select formControlName="basementWindowsMaterial" multiple>
+                  <mat-option
+                    *ngFor="let option of guttersBasementWindowsMaterialOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div
+              class="col-md-6"
+              *ngIf="
+                exteriorDetails
+                  .get('window.basementWindowsMaterial')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input
+                  matInput
+                  formControlName="otherBasementWindowsMaterial"
+                />
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Condition</mat-label>
+                <mat-select formControlName="basementWindowsCondition" multiple>
+                  <mat-option
+                    *ngFor="
+                      let option of guttersBasementWindowsMaterialConditionsOptions
+                    "
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-6"
+              *ngIf="
+                exteriorDetails
+                  .get('window.basementWindowsCondition')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input
+                  matInput
+                  formControlName="otherBasementWindowsCondition"
+                />
+              </mat-form-field>
+            </div>
+            <div class="col-md-12">
+              <mat-form-field class="general-full-width">
+                <mat-label>Comments</mat-label>
+                <mat-select formControlName="basementWindowsComments" multiple>
+                  <mat-option
+                    *ngFor="
+                      let option of guttersBasementWindowsMaterialCommentsOptions
+                    "
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-12"
+              *ngIf="
+                exteriorDetails
+                  .get('window.basementWindowsComments')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input
+                  matInput
+                  formControlName="otherBasementWindowsComments"
+                />
+              </mat-form-field>
+            </div>
+          </div>
+
+          <app-image-uploader
+            [imageName]="exteriorBasementWindowsImage"
+          ></app-image-uploader>
+
+          <div formArrayName="gasMeter" class="row">
+            <h6 class="sub-head">
+              GAS METER
+              <span
+                ><button mat-flat-button (click)="addGasMeters()">
+                  Add Gas Meter
+                </button></span
+              >&nbsp;<span></span>
+            </h6>
+            <div
+              *ngFor="let gasMeterSingle of gasMeters.controls; let i = index"
+              [formGroupName]="i"
+              class="row deck-patio-group"
+            >
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Gas Meter Type</mat-label>
+                  <mat-select formControlName="gasMeterType" multiple>
+                    <mat-option
+                      *ngFor="let option of guttersGasMeterTypeOptions"
+                      [value]="option"
+                      >{{ option }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div
+                class="col-md-6"
+                *ngIf="
+                  gasMeterSingle.get('gasMeterType')?.value?.includes('Other')
+                "
+              >
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherGasMeterType" />
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Condition</mat-label>
+                  <mat-select formControlName="gasMeterCondition" multiple>
+                    <mat-option
+                      *ngFor="let option of guttersGasMeterTypeConditionOptions"
+                      [value]="option"
+                      >{{ option }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div
+                class="col-md-6"
+                *ngIf="
+                  gasMeterSingle
+                    .get('gasMeterCondition')
+                    ?.value?.includes('Other')
+                "
+              >
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherGasMeterCondition" />
+                </mat-form-field>
+              </div>
+              <div class="col-md-12">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Comments</mat-label>
+                  <input matInput formControlName="gasMeterComments" />
+                </mat-form-field>
+              </div>
+              <div class="col-md-12 text-end mb-3">
+                <button
+                  mat-flat-button
+                  (click)="removeGasMeters(i)"
+                  style="
+                    margin-right: 8px;
+                    background-color: #ed636d;
+                    color: white;
+                  "
+                >
+                  Remove
+                </button>
+              </div>
+              <app-image-uploader
+                [imageName]="exteriorGasMeterImage + i"
+              ></app-image-uploader>
+            </div>
+          </div>
+
+          <div formGroupName="electricity" class="row">
+            <h6 class="sub-head">ELECTRICAL</h6>
+            <div class="col-md-12">
+              <mat-form-field class="general-full-width">
+                <mat-label>Exterior Outlets and Lights</mat-label>
+                <mat-select formControlName="exteriorOutletsAndLights" multiple>
+                  <mat-option
+                    *ngFor="let option of guttersElectricalOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-12"
+              *ngIf="
+                exteriorDetails
+                  .get('electricity.exteriorOutletsAndLights')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input
+                  matInput
+                  formControlName="otherExteriorOutletsAndLights"
+                />
+              </mat-form-field>
+            </div>
+
+            <app-image-uploader
+              [imageName]="exteriorOutletsAndLightsImage"
+            ></app-image-uploader>
+          </div>
+
+          <div formGroupName="exteriorHouseBibs" class="row">
+            <h6 class="sub-head">EXTERIOR HOSE BIBS</h6>
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Type</mat-label>
+                <mat-select formControlName="exteriorHouseBibsType" multiple>
+                  <mat-option
+                    *ngFor="let option of guttersExteriorHouseBibsTypeOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-6"
+              *ngIf="
+                exteriorDetails
+                  .get('exteriorHouseBibs.exteriorHouseBibsType')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input matInput formControlName="otherExteriorHouseBibsType" />
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Condition</mat-label>
+                <mat-select
+                  formControlName="exteriorHouseBibsCondition"
+                  multiple
+                >
+                  <mat-option
+                    *ngFor="
+                      let option of guttersExteriorHouseBibsConditionOptions
+                    "
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-6"
+              *ngIf="
+                exteriorDetails
+                  .get('exteriorHouseBibs.exteriorHouseBibsCondition')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input
+                  matInput
+                  formControlName="otherExteriorHouseBibsCondition"
+                />
+              </mat-form-field>
+            </div>
+            <div class="col-md-12">
+              <mat-form-field class="general-full-width">
+                <mat-label>Comments</mat-label>
+                <mat-select
+                  formControlName="exteriorHouseBibsComments"
+                  multiple
+                >
+                  <mat-option
+                    *ngFor="
+                      let option of guttersExteriorHouseBibsCommentsOptions
+                    "
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-12"
+              *ngIf="
+                exteriorDetails
+                  .get('exteriorHouseBibs.exteriorHouseBibsComments')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input
+                  matInput
+                  formControlName="otherExteriorHouseBibsComments"
+                />
+              </mat-form-field>
+            </div>
+
+            <app-image-uploader
+              [imageName]="exteriorHouseBibsImage"
+            ></app-image-uploader>
+          </div>
+
+          <div formArrayName="airCondition" class="row">
+            <h6 class="sub-head">
+              AIR CONDITIONING
+              <span
+                ><button mat-flat-button (click)="addAirConditions()">
+                  Add Air Condition
+                </button></span
+              >&nbsp;<span></span>
+            </h6>
+            <div
+              *ngFor="let airCondition of airConditions.controls; let i = index"
+              [formGroupName]="i"
+              class="row deck-patio-group"
+            >
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Manufacturer</mat-label>
+                  <input matInput formControlName="airConditionsManufacturer" />
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Approximate Age</mat-label>
+                  <input
+                    matInput
+                    formControlName="airConditionsApproximateAge"
+                  />
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Area Served</mat-label>
+                  <mat-select
+                    formControlName="airConditionsAreaServed"
+                    multiple
+                  >
+                    <mat-option
+                      *ngFor="
+                        let option of guttersExteriorManufacturerAreaServedOptions
+                      "
+                      [value]="option"
+                      >{{ option }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div
+                class="col-md-6"
+                *ngIf="
+                  airCondition
+                    .get('airConditionsAreaServed')
+                    ?.value?.includes('Other')
+                "
+              >
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input
+                    matInput
+                    formControlName="otherAirConditionsAreaServed"
+                  />
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Fuel Type</mat-label>
+                  <mat-select formControlName="airConditionsFuelType" multiple>
+                    <mat-option
+                      *ngFor="let option of guttersExteriorFuelTypeOptions"
+                      [value]="option"
+                      >{{ option }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div
+                class="col-md-6"
+                *ngIf="
+                  airCondition
+                    .get('airConditionsFuelType')
+                    ?.value?.includes('Other')
+                "
+              >
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input
+                    matInput
+                    formControlName="otherAirConditionsFuelType"
+                  />
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Condition</mat-label>
+                  <mat-select formControlName="airConditionsCondition" multiple>
+                    <mat-option
+                      *ngFor="
+                        let option of guttersExteriorManufacturerConditionsOptions
+                      "
+                      [value]="option"
+                      >{{ option }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div
+                class="col-md-6"
+                *ngIf="
+                  airCondition
+                    .get('airConditionsCondition')
+                    ?.value?.includes('Other')
+                "
+              >
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input
+                    matInput
+                    formControlName="otherAirConditionsCondition"
+                  />
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Condenser Fins</mat-label>
+                  <mat-select
+                    formControlName="airConditionsCondenserFins"
+                    multiple
+                  >
+                    <mat-option
+                      *ngFor="
+                        let option of guttersACExteriorManufacturerCondenserFinsOptions
+                      "
+                      [value]="option"
+                      >{{ option }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div
+                class="col-md-6"
+                *ngIf="
+                  airCondition
+                    .get('airConditionsCondenserFins')
+                    ?.value?.includes('Other')
+                "
+              >
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input
+                    matInput
+                    formControlName="otherAirConditionsCondenserFins"
+                  />
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Cabinet/Housing</mat-label>
+                  <mat-select
+                    formControlName="airConditionsCabinetHousing"
+                    multiple
+                  >
+                    <mat-option
+                      *ngFor="
+                        let option of guttersACExteriorManufacturerCabinetHousingOptions
+                      "
+                      [value]="option"
+                      >{{ option }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div
+                class="col-md-6"
+                *ngIf="
+                  airCondition
+                    .get('airConditionsCabinetHousing')
+                    ?.value?.includes('Other')
+                "
+              >
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input
+                    matInput
+                    formControlName="otherAirConditionsCabinetHousing"
+                  />
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Refrigerant Line Insulation</mat-label>
+                  <mat-select
+                    formControlName="airConditionsRefrigerantLineInsulation"
+                    multiple
+                  >
+                    <mat-option
+                      *ngFor="
+                        let option of guttersACExteriorManufacturerRefrigentLineOptions
+                      "
+                      [value]="option"
+                      >{{ option }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div
+                class="col-md-6"
+                *ngIf="
+                  airCondition
+                    .get('airConditionsRefrigerantLineInsulation')
+                    ?.value?.includes('Other')
+                "
+              >
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input
+                    matInput
+                    formControlName="otherAirConditionsRefrigerantLineInsulation"
+                  />
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>A/C System Operation</mat-label>
+                  <mat-select
+                    formControlName="airConditionsACSystemOperation"
+                    multiple
+                  >
+                    <mat-option
+                      *ngFor="
+                        let option of guttersACExteriorManufacturerACSystemOperationOptions
+                      "
+                      [value]="option"
+                      >{{ option }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-12">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Comments</mat-label>
+                  <input matInput formControlName="airConditionsComments" />
+                </mat-form-field>
+              </div>
+              <div class="col-md-12 text-end mb-3">
+                <button
+                  mat-flat-button
+                  (click)="removeAirConditions(i)"
+                  style="
+                    margin-right: 8px;
+                    background-color: #ed636d;
+                    color: white;
+                  "
+                >
+                  Remove
+                </button>
+              </div>
+            </div>
+
+            <app-image-uploader
+              [imageName]="exteriorAirConditioningImage"
+            ></app-image-uploader>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-image-uploader [imageName]="exteriorWallImage"></app-image-uploader>
+<app-image-uploader [imageName]="exteriorFoundationImage"></app-image-uploader>
+<app-image-uploader
+  [imageName]="exteriorInteriorFoundationImage"
+></app-image-uploader>
+<app-image-uploader [imageName]="exteriorCracksImage"></app-image-uploader>
+<app-image-uploader [imageName]="exteriorDoorImage"></app-image-uploader>
+<app-image-uploader [imageName]="exteriorSideDoorImage"></app-image-uploader>
+<app-image-uploader [imageName]="exteriorPatioDoorImage"></app-image-uploader>
+<app-image-uploader
+  [imageName]="exteriorPatioScreenDoorImage"
+></app-image-uploader>
+<app-image-uploader
+  [imageName]="exteriorGuttersRoofsRoofDrainageImage"
+></app-image-uploader>
+<app-image-uploader
+  [imageName]="exteriorWindowsMaterialImage"
+></app-image-uploader>
+<app-image-uploader
+  [imageName]="exteriorWindowScreensImage"
+></app-image-uploader>
+<app-image-uploader
+  [imageName]="exteriorBasementWindowsImage"
+></app-image-uploader>
+<app-image-uploader [imageName]="exteriorGasMeterImage"></app-image-uploader>
+<app-image-uploader
+  [imageName]="exteriorOutletsAndLightsImage"
+></app-image-uploader>
+<app-image-uploader [imageName]="exteriorHouseBibsImage"></app-image-uploader>
+<app-image-uploader
+  [imageName]="exteriorAirConditioningImage"
+></app-image-uploader>

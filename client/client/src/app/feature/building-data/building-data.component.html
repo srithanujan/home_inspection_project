@@ -1,0 +1,225 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card border-primary mb-3 custom-card">
+      <form [formGroup]="buildingDetails" class="row g-3">
+        <h5 class="sub-head">BUILDING DATA AND INSPECTION DETAILS</h5>
+
+        <div class="row">
+
+          <div class="col-md-3">
+            <mat-form-field class="general-full-width">
+              <mat-label>Building Type</mat-label>
+              <mat-select formControlName="buildingType" multiple>
+                <mat-option *ngFor="let type of buildingTypes" [value]="type">{{ type }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-3" *ngIf="buildingDetails.get('buildingType')?.value?.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherBuildingType" placeholder="Other">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-3">
+            <mat-form-field class="general-full-width">
+              <mat-label>Estimated Age</mat-label>
+              <input matInput formControlName="estimatedAge" placeholder="Ex. 10 years">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-3">
+            <mat-form-field class="general-full-width">
+              <mat-label>State of Occupancy</mat-label>
+              <mat-select formControlName="occupancyState" multiple>
+                <mat-option *ngFor="let state of occupancyStates" [value]="state">{{ state }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-3" *ngIf="buildingDetails.get('occupancyState')?.value?.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherOccupancyState" placeholder="Other">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-3">
+            <mat-form-field class="general-full-width">
+              <mat-label>Garage</mat-label>
+              <mat-select formControlName="garage" multiple>
+                <mat-option *ngFor="let garage of garages" [value]="garage">{{ garage }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-3" *ngIf="buildingDetails.get('garage')?.value?.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other Garage</mat-label>
+              <input matInput formControlName="otherGarage" placeholder="Other">
+            </mat-form-field>
+          </div>
+
+
+          <div class="col-md-3">
+            <mat-form-field class="general-full-width">
+              <mat-label>Exterior</mat-label>
+              <mat-select formControlName="exterior" multiple>
+                <mat-option *ngFor="let exterior of exteriors" [value]="exterior">{{ exterior }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-3" *ngIf="buildingDetails.get('exterior')?.value?.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other Exteriors</mat-label>
+              <input matInput formControlName="otherExterior" placeholder="Other">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-3">
+            <mat-form-field class="general-full-width">
+              <mat-label>Electricity On</mat-label>
+              <mat-select formControlName="electricityOn" multiple>
+                <mat-option *ngFor="let condition of electricityGasOilWaterOnDrop" [value]="condition">{{ condition }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-3" *ngIf="buildingDetails.get('electricityOn')?.value?.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherElectricityOn" placeholder="Other">
+            </mat-form-field>
+          </div>
+
+
+          <div class="col-md-3">
+            <mat-form-field class="general-full-width">
+              <mat-label>Gas/Oil ON</mat-label>
+              <mat-select formControlName="gasOilOn" multiple>
+                <mat-option *ngFor="let condition of electricityGasOilWaterOnDrop" [value]="condition">{{ condition }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-3" *ngIf="buildingDetails.get('gasOilOn')?.value?.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherGasOilOn" placeholder="Other">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-3">
+            <mat-form-field class="general-full-width">
+              <mat-label>Water On</mat-label>
+              <mat-select formControlName="waterOn" multiple>
+                <mat-option *ngFor="let condition of electricityGasOilWaterOnDrop" [value]="condition">{{ condition }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-3" *ngIf="buildingDetails.get('waterOn')?.value?.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherWaterOn" placeholder="Other">
+            </mat-form-field>
+          </div>
+
+
+          <div class="col-md-3">
+            <mat-form-field class="general-full-width">
+              <mat-label>Weather Condition</mat-label>
+              <mat-select formControlName="weatherCondition" multiple>
+                <mat-option *ngFor="let condition of weatherConditions" [value]="condition">{{ condition }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-3" *ngIf="buildingDetails.get('weatherCondition')?.value?.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other Weather Condition</mat-label>
+              <input matInput formControlName="otherWeatherCondition" placeholder="Other">
+            </mat-form-field>
+          </div>
+
+
+          <div class="col-md-3">
+            <mat-form-field class="general-full-width">
+              <mat-label>Recent Rain</mat-label>
+              <mat-select formControlName="recentRain">
+                <mat-option *ngFor="let condition of recentRain" [value]="condition">{{ condition }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+
+          <div class="col-md-3">
+            <mat-form-field class="general-full-width">
+              <mat-label>Soil Condition</mat-label>
+              <mat-select formControlName="soilCondition" multiple>
+                <mat-option *ngFor="let condition of soilConditions" [value]="condition">{{ condition }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-3" *ngIf="buildingDetails.get('soilCondition')?.value?.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other Soil Condition</mat-label>
+              <input matInput formControlName="OtherSoilCondition" placeholder="Other">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Outdoor Temperature</mat-label>
+              <input matInput formControlName="outdoorTemperature" placeholder="Ex. 25°C">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-3">
+            <mat-form-field class="general-full-width">
+              <mat-label>Inspection Date</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="inspectionDate" placeholder="Choose a date">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+
+          <div class="col-md-3">
+            <mat-form-field class="general-full-width">
+              <mat-label>Start Time</mat-label>
+              <input matInput formControlName="startTime" placeholder="Ex. 09:00 AM">
+            </mat-form-field>
+          </div>
+
+
+          <div class="col-md-3">
+            <mat-form-field class="general-full-width">
+              <mat-label>End Time</mat-label>
+              <input matInput formControlName="endTime" placeholder="Ex. 05:00 PM">
+            </mat-form-field>
+          </div>
+        </div>
+
+      </form>
+
+      <app-image-uploader [imageName]="buildingImage" [imageLoader]="imageBuildingLoading"></app-image-uploader>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,53 @@
+.custom-card {
+  // width: 80%;
+  max-width: 98%;
+  padding: 20px;
+  margin: 20px;
+}
+
+@media (max-width: 768px) {
+  .custom-card {
+    padding: 10px;
+    margin: 10px;
+  }
+}
+.sub-head {
+  margin-top: 10px !important;
+  color: darkgray;
+}
+
+
+
+.custom-card-image {
+  border-style: dashed;
+  // min-width: 97%;
+  min-width: auto;
+  margin: 20px;
+  background-color: azure;
+}
+
+.custom-card-image {
+  border-style: dashed;
+  min-width: 85%;
+  max-width: 85%;
+  margin: 20px;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-container {
+  align-items: center;
+  align-content: center;
+
+}
+
+.custom-row {
+  margin: auto; /* Center horizontally */
+  width: fit-content; /* Shrink to content width */
+
+}

@@ -1,0 +1,317 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card border-primary mb-3 custom-card">
+      <form [formGroup]="garageCarportDetails" class="row g-3">
+        <h5 class="sub-head">GARAGE / CARPORT</h5>
+
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Type</mat-label>
+              <mat-select formControlName="garageCarportType" multiple>
+                <mat-option *ngFor="let option of typeOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6" *ngIf="garageCarportDetails.get('garageCarportType')?.value?.length && garageCarportDetails.get('garageCarportType')?.value.includes('Other')">
+
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherGarageCarportType">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Garage Door</mat-label>
+              <mat-select formControlName="garageCarportGarageDoor" multiple>
+                <mat-option *ngFor="let option of garageDoorOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6" *ngIf="garageCarportDetails.get('garageCarportGarageDoor')?.value?.length && garageCarportDetails.get('garageCarportGarageDoor')?.value.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherGarageCarportGarageDoor">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Door Condition</mat-label>
+              <mat-select formControlName="garageCarportDoorCondition" multiple>
+                <mat-option *ngFor="let option of garageDoorConditionOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6" *ngIf="garageCarportDetails.get('garageCarportDoorCondition')?.value?.length && garageCarportDetails.get('garageCarportDoorCondition')?.value.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherGarageCarportDoorCondition">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Comments</mat-label>
+              <input matInput formControlName="garageCarportComments">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Automatic Opener</mat-label>
+              <mat-select formControlName="garageCarportAutomaticOpener" multiple>
+                <mat-option *ngFor="let option of automaticOpenerOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6" *ngIf="garageCarportDetails.get('garageCarportAutomaticOpener')?.value?.length && garageCarportDetails.get('garageCarportAutomaticOpener')?.value.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherGarageCarportAutomaticOpener">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Safety Reverses</mat-label>
+              <mat-select formControlName="garageCarportSafetyReverses" multiple>
+                <mat-option *ngFor="let option of safetyReversesOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6" *ngIf="garageCarportDetails.get('garageCarportSafetyReverses')?.value?.length && garageCarportDetails.get('garageCarportSafetyReverses')?.value.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherGarageCarportSafetyReverses">
+            </mat-form-field>
+          </div>
+
+
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Roofing</mat-label>
+              <mat-select formControlName="garageCarportRoofing" multiple>
+                <mat-option *ngFor="let option of roofingOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6" *ngIf="garageCarportDetails.get('garageCarportRoofing')?.value?.length && garageCarportDetails.get('garageCarportRoofing')?.value.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherGarageCarportSafetyReverses">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Condition</mat-label>
+              <mat-select formControlName="garageCarportRoofingCondition" multiple>
+                <mat-option *ngFor="let option of garageRoofingConditionOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6" *ngIf="garageCarportDetails.get('garageCarportRoofingCondition')?.value?.length && garageCarportDetails.get('garageCarportRoofingCondition')?.value.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherGarageCarportRoofingCondition">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Floor / Foundation</mat-label>
+              <mat-select formControlName="garageCarportFloorFoundation" multiple>
+                <mat-option *ngFor="let option of floorFoundationOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6" *ngIf="garageCarportDetails.get('garageCarportFloorFoundation')?.value?.length && garageCarportDetails.get('garageCarportFloorFoundation')?.value.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherGarageCarportFloorFoundation">
+            </mat-form-field>
+          </div>
+
+
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Condition</mat-label>
+              <mat-select formControlName="garageCarportFloorFoundationCondition" multiple>
+                <mat-option *ngFor="let option of floorFoundationConditionOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6" *ngIf="garageCarportDetails.get('garageCarportFloorFoundationCondition')?.value?.length && garageCarportDetails.get('garageCarportFloorFoundationCondition')?.value.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherGarageCarportFloorFoundationCondition">
+            </mat-form-field>
+          </div>
+
+
+
+
+
+
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Ceiling</mat-label>
+              <mat-select formControlName="garageCarportCeiling" multiple>
+                <mat-option *ngFor="let option of ceilingOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6" *ngIf="garageCarportDetails.get('garageCarportCeiling')?.value?.length && garageCarportDetails.get('garageCarportCeiling')?.value.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherGarageCarportCeiling">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Condition</mat-label>
+              <mat-select formControlName="garageCarportCeilingCondition" multiple>
+                <mat-option *ngFor="let option of ceilingConditionOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6" *ngIf="garageCarportDetails.get('garageCarportCeilingCondition')?.value?.length && garageCarportDetails.get('garageCarportCeilingCondition')?.value.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherGarageCarportCeilingCondition">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Exterior Walls</mat-label>
+              <mat-select formControlName="garageCarportExteriorWalls" multiple>
+                <mat-option *ngFor="let option of exteriorWallsOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6" *ngIf="garageCarportDetails.get('garageCarportExteriorWalls')?.value?.length && garageCarportDetails.get('garageCarportExteriorWalls')?.value.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherGarageCarportExteriorWalls">
+            </mat-form-field>
+          </div>
+
+
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Interior Walls</mat-label>
+              <mat-select formControlName="garageCarportInteriorWalls" multiple>
+                <mat-option *ngFor="let option of interiorWallsOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6" *ngIf="garageCarportDetails.get('garageCarportInteriorWalls')?.value?.length && garageCarportDetails.get('garageCarportInteriorWalls')?.value.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherGarageCarportInteriorWalls">
+            </mat-form-field>
+          </div>
+
+
+
+          <div formArrayName="serviceDoor" class="row">
+            <h6 class="sub-head">Service Door&nbsp;
+              <span><button mat-flat-button (click)="addServiceDoor()">Add Deck/Patio</button></span>&nbsp;<span></span>
+            </h6>
+
+            <div *ngFor="let serviceDoorSingle of serviceDoorForm.controls; let i = index" [formGroupName]="i" class="row">
+
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Service Door</mat-label>
+                  <mat-select formControlName="garageCarportServiceDoor" multiple>
+                    <mat-option *ngFor="let option of serviceDoorOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Door Condition</mat-label>
+                  <mat-select formControlName="garageCarportServiceDoorCondition" multiple>
+                    <mat-option *ngFor="let option of serviceDoorConditionOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="serviceDoorSingle.get('garageCarportServiceDoorCondition')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherGarageCarportServiceDoorCondition">
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Self-Close</mat-label>
+                  <mat-select formControlName="garageCarportServiceDoorSelfClose" multiple>
+                    <mat-option *ngFor="let option of serviceDoorSelfCloseOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="serviceDoorSingle.get('garageCarportServiceDoorSelfClose')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherGarageCarportServiceDoorSelfClose">
+                </mat-form-field>
+              </div>
+
+              <div class="col-md-12 text-end mb-3">
+                <button mat-flat-button (click)="removeServiceDoor(i)" style="margin-right: 8px; background-color: #ED636D; color: white;">Remove</button>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Electrical (Receptacles and Lights)</mat-label>
+              <mat-select formControlName="garageCarportElectricalReceptaclesLights" multiple>
+                <mat-option *ngFor="let option of electricalOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6" *ngIf="garageCarportDetails.get('garageCarportElectricalReceptaclesLights')?.value?.length && garageCarportDetails.get('garageCarportElectricalReceptaclesLights')?.value.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherGarageCarportElectricalReceptaclesLights">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Fire Seperation Wall</mat-label>
+              <mat-select formControlName="garageCarportFireSeparationwall" multiple>
+                <mat-option *ngFor="let option of fireSeparationWallOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6" *ngIf="garageCarportDetails.get('garageCarportFireSeparationwall')?.value?.length && garageCarportDetails.get('garageCarportFireSeparationwall')?.value.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherGarageCarportFireSeparationwall">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-12">
+            <mat-form-field class="general-full-width">
+              <mat-label>Comments</mat-label>
+              <input matInput formControlName="garageCarportElectricalReceptaclesLightsComments">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <app-image-uploader [imageName]="garageCarpotImage"></app-image-uploader>
+
+
+      </form>
+    </div>
+  </div>
+</div>

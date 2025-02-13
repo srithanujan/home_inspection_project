@@ -1,0 +1,267 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card border-primary mb-3 custom-card">
+      <form [formGroup]="lotsGroundsDetails" class="row g-3">
+        <h5 class="sub-head">LOTS AND GROUNDS</h5>
+
+        <div formGroupName="driveway" class="row">
+          <h6 class="sub-head">DRIVEWAY/PARKING</h6>
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Material</mat-label>
+              <mat-select formControlName="material" multiple>
+                <mat-option *ngFor="let option of drivewayMaterialOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6" *ngIf="lotsGroundsDetails.get('driveway.material')?.value?.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherMaterial">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Condition</mat-label>
+              <mat-select formControlName="condition" multiple>
+                <mat-option *ngFor="let option of drivewayConditionOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6" *ngIf="lotsGroundsDetails.get('driveway.condition')?.value?.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherCondtion">
+            </mat-form-field>
+          </div>
+          <div class="col-md-12">
+            <mat-form-field class="general-full-width">
+              <mat-label>Comments</mat-label>
+              <mat-select formControlName="comments" multiple>
+                <mat-option *ngFor="let option of drivewayCommentsOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-12" *ngIf="lotsGroundsDetails.get('driveway.comments')?.value?.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherComments">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <app-image-uploader [imageName]="lotsAndGroundsDrivewayImage"></app-image-uploader>
+
+        <div formGroupName="porch" class="row">
+          <h6 class="sub-head">PORCH</h6>
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Material</mat-label>
+              <mat-select formControlName="material" multiple>
+                <mat-option *ngFor="let option of porchMaterialOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6" *ngIf="lotsGroundsDetails.get('porch.material')?.value?.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherMaterial">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Condition</mat-label>
+              <mat-select formControlName="condition" multiple>
+                <mat-option *ngFor="let option of porchConditionOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6" *ngIf="lotsGroundsDetails.get('porch.condition')?.value?.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherCondition">
+            </mat-form-field>
+          </div>
+          <div class="col-md-12">
+            <mat-form-field class="general-full-width">
+              <mat-label>Comments</mat-label>
+              <input matInput formControlName="comments">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <app-image-uploader [imageName]="lotsAndGroundsPorchImage"></app-image-uploader>
+
+        <div formGroupName="stepsHandrails" class="row">
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Steps And Handrails</mat-label>
+              <mat-select formControlName="material" multiple>
+                <mat-option *ngFor="let option of stepsHandrailsMaterialOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6" *ngIf="lotsGroundsDetails.get('stepsHandrails.material')?.value?.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherMaterial">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Condition</mat-label>
+              <mat-select formControlName="condition" multiple>
+                <mat-option *ngFor="let option of stepsHandrailsConditionOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6" *ngIf="lotsGroundsDetails.get('stepsHandrails.condition')?.value?.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherCondition">
+            </mat-form-field>
+          </div>
+          <div class="col-md-12">
+            <mat-form-field class="general-full-width">
+              <mat-label>Comments</mat-label>
+              <input matInput formControlName="comments">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <app-image-uploader [imageName]="lotsAndGroundsStepsAndHandrailsImage"></app-image-uploader>
+
+
+        <div formArrayName="deckPatio" class="row">
+          <h6 class="sub-head">DECK / PATIO / BALCONY &nbsp;
+            <span><button mat-flat-button (click)="addDeckPatio()">Add Deck/Patio</button></span>&nbsp;<span></span>
+          </h6>
+
+          <div *ngFor="let deckPatioSingle of deckPatioForm.controls; let i = index" [formGroupName]="i" class="row">
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Material</mat-label>
+                <mat-select formControlName="material" multiple>
+                  <mat-option *ngFor="let option of deckPatioMaterialOptions" [value]="option">{{ option }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div class="col-md-6" *ngIf="deckPatioSingle.get('material')?.value?.includes('Other')">
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input matInput formControlName="otherMaterial">
+              </mat-form-field>
+            </div>
+
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Condition</mat-label>
+                <mat-select formControlName="condition" multiple>
+                  <mat-option *ngFor="let option of deckPatioConditionOptions" [value]="option">{{ option }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div class="col-md-6" *ngIf="deckPatioSingle.get('condition')?.value?.includes('Other')">
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input matInput formControlName="otherCondition">
+              </mat-form-field>
+            </div>
+
+            <div class="col-md-12">
+              <mat-form-field class="general-full-width">
+                <mat-label>Comments</mat-label>
+                <input matInput formControlName="comments">
+              </mat-form-field>
+            </div>
+
+
+
+            <div class="col-md-12 text-end">
+              <button mat-flat-button (click)="removeDeckPatio(i)" style="margin-right: 8px; background-color: #ED636D; color: white;">Remove</button>
+            </div>
+            <app-image-uploader [imageName]="lotsAndGroundsDeckPatioBalconyImage + i"></app-image-uploader>
+
+          </div>
+        </div>
+
+        <div formGroupName="fence" class="row">
+          <h6 class="sub-head">FENCE</h6>
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Material</mat-label>
+              <mat-select formControlName="material" multiple>
+                <mat-option *ngFor="let option of fenceMaterialOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6" *ngIf="lotsGroundsDetails.get('fence.material')?.value?.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherMaterial">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Condition</mat-label>
+              <mat-select formControlName="condition" multiple>
+                <mat-option *ngFor="let option of fenceConditionOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6" *ngIf="lotsGroundsDetails.get('fence.condition')?.value === 'Other'">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherCondtion">
+            </mat-form-field>
+          </div>
+          <div class="col-md-12">
+            <mat-form-field class="general-full-width">
+              <mat-label>Comments</mat-label>
+              <mat-select formControlName="comments">
+                <mat-option *ngFor="let option of fenceComments" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6" *ngIf="lotsGroundsDetails.get('fence.comments')?.value === 'Other'">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherComments">
+            </mat-form-field>
+          </div>
+        </div>
+
+
+        <app-image-uploader [imageName]="lotsAndGroundsFenceImage"></app-image-uploader>
+
+
+
+        <!-- Landscaping Affecting Foundation -->
+        <div formGroupName="landscaping" class="row">
+          <h6 class="sub-head">LANDSCAPING AFFECTING FOUNDATION</h6>
+          <div class="col-md-12">
+            <mat-form-field class="general-full-width">
+              <mat-label>Recommendations</mat-label>
+              <mat-select formControlName="recommendations" multiple>
+                <mat-option *ngFor="let option of landscapingRecommendations" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-12" *ngIf="lotsGroundsDetails.get('landscaping.recommendations')?.value?.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherRecommendations">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <app-image-uploader [imageName]="lotsAndGroundsLandscapingAffectingImage"></app-image-uploader>
+
+
+
+      </form>
+    </div>
+  </div>
+</div>

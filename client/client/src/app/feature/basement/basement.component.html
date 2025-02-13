@@ -1,0 +1,253 @@
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card border-primary mb-3 custom-card">
+      <form [formGroup]="basementDetails" class="row g-3">
+        <div formArrayName="basements">
+          <div *ngFor="let basement of basements?.controls; let i = index" [formGroupName]="i">
+            <div class="row">
+              <h5 class="sub-head">BASEMENT</h5>
+              <div class="col-md-3">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Name</mat-label>
+                  <input matInput formControlName="name" required>
+                  <mat-error *ngIf="basement.get('name')?.hasError('required')">Basement Name is required</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-3" style="margin-top:7px; margin-bottom: 26px;display: flex; justify-content: flex-end;">
+                <button mat-flat-button (click)="removeBasements(i)" style="margin-right: 8px; background-color: #ED636D; color: white;">
+                  Remove
+                </button>
+              </div>
+            </div>
+
+            <div class="row">
+              <h6 class="sub-head">Ceiling</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Ceiling</mat-label>
+                  <mat-select formControlName="basementLaundryCeiling" multiple>
+                    <mat-option *ngFor="let option of basementCeilingOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="basement.get('basementLaundryCeiling')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherBasementLaundryCeiling">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <h6 class="sub-head">Walls</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Walls</mat-label>
+                  <mat-select formControlName="basementWalls" multiple>
+                    <mat-option *ngFor="let option of basementWallsOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="basement.get('basementWalls')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherBasementWalls">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <h6 class="sub-head">Vapor Barrier</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Vapor Barrier</mat-label>
+                  <mat-select formControlName="basementVaporBarrier" multiple>
+                    <mat-option *ngFor="let option of basementVaporBarrierOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="basement.get('basementVaporBarrier')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherBasementBarrier">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <h6 class="sub-head">Insulation</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Insulation</mat-label>
+                  <mat-select formControlName="basementInsulation" multiple>
+                    <mat-option *ngFor="let option of basementInsulationOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="basement.get('basementInsulation')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherBasementInsulation">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <h6 class="sub-head">Doors</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Doors</mat-label>
+                  <mat-select formControlName="basementDoors" multiple>
+                    <mat-option *ngFor="let option of basementDoorsOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="basement.get('basementDoors')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherBasementDoors">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <h6 class="sub-head">Windows</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Windows</mat-label>
+                  <mat-select formControlName="basementWindows" multiple>
+                    <mat-option *ngFor="let option of basementWindowsOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="basement.get('basementWindows')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherBasementWindows">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <h6 class="sub-head">Electrical</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Electrical</mat-label>
+                  <mat-select formControlName="basementElectrical" multiple>
+                    <mat-option *ngFor="let option of basementElectricalOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="basement.get('basementElectrical')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherBasementElectrical">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div formGroupName="basementFloor" class="row">
+              <h6 class="sub-head">Floor</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Material</mat-label>
+                  <mat-select formControlName="basementFloorMaterial" multiple>
+                    <mat-option *ngFor="let option of basementFloorMaterialOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="basement.get('basementFloor.basementFloorMaterial')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherBasementFloorMaterial">
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Condition</mat-label>
+                  <mat-select formControlName="basementFloorCondition" multiple>
+                    <mat-option *ngFor="let option of basementFloorConditionOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="basement.get('basementFloor.basementFloorCondition')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherBasementFloorCondition">
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Covered</mat-label>
+                  <mat-select formControlName="basementFloorCovered" multiple>
+                    <mat-option *ngFor="let option of basementFloorCoveredOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="basement.get('basementFloor.basementFloorCovered')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherBasementFloorCovered">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div formGroupName="basementStairs" class="row">
+              <h6 class="sub-head">Stairs</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Condition</mat-label>
+                  <mat-select formControlName="basementStairsConditon" multiple>
+                    <mat-option *ngFor="let option of basementStairsConditionOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="basement.get('basementStairs.basementStairsConditon')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherBasementStairsCondition">
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Handrail</mat-label>
+                  <mat-select formControlName="basementStairsHandrail" multiple>
+                    <mat-option *ngFor="let option of basementStairsHandrailOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="basement.get('basementStairs.basementStairsHandrail')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherBasementStairsHandrail">
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Headway</mat-label>
+                  <mat-select formControlName="basementStairsHeadway" multiple>
+                    <mat-option *ngFor="let option of basementStairsHeadwayOverStairsOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="basement.get('basementStairs.basementStairsHeadway')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherBasementStairsHeadway">
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <button mat-flat-button (click)="addBasements()" [disabled]="!basementDetails.valid">
+            Add Basement
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,925 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card border-primary mb-3 custom-card">
+      <form [formGroup]="interiorDetails" class="row g-3">
+        <h5 class="sub-head">INTERIOR</h5>
+
+        <div class="row">
+          <div formArrayName="stair" class="row">
+            <h6 class="sub-head">
+              STAIRS&nbsp;
+              <span
+                ><button mat-flat-button (click)="addStairs()">
+                  Add Stairs
+                </button></span
+              >&nbsp;<span></span>
+            </h6>
+            <div
+              *ngFor="let stairSingle of stairsForm.controls; let i = index"
+              [formGroupName]="i"
+              class="row"
+            >
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Material</mat-label>
+                  <mat-select formControlName="interiorStairsMaterial" multiple>
+                    <mat-option
+                      *ngFor="let option of interiorStairsMaterialOptions"
+                      [value]="option"
+                      >{{ option }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div
+                class="col-md-6"
+                *ngIf="
+                  stairSingle
+                    .get('interiorStairsMaterial')
+                    ?.value?.includes('Other')
+                "
+              >
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input
+                    matInput
+                    formControlName="otherInteriorStairsMaterial"
+                  />
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Condition</mat-label>
+                  <mat-select
+                    formControlName="interiorStairsCondition"
+                    multiple
+                  >
+                    <mat-option
+                      *ngFor="let option of interiorStairsConditionOptions"
+                      [value]="option"
+                      >{{ option }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div
+                class="col-md-6"
+                *ngIf="
+                  stairSingle
+                    .get('interiorStairsCondition')
+                    ?.value?.includes('Other')
+                "
+              >
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input
+                    matInput
+                    formControlName="otherInteriorStairsCondition"
+                  />
+                </mat-form-field>
+              </div>
+              <div class="col-md-12">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Comments</mat-label>
+                  <input matInput formControlName="interiorStairsComments" />
+                </mat-form-field>
+              </div>
+
+              <div class="col-md-12 text-end mb-3">
+                <button
+                  mat-flat-button
+                  (click)="removeStairs(i)"
+                  style="
+                    margin-right: 8px;
+                    background-color: #ed636d;
+                    color: white;
+                  "
+                >
+                  Remove
+                </button>
+              </div>
+
+              <app-image-uploader
+                [imageName]="interiorStairsImage + i"
+              ></app-image-uploader>
+            </div>
+          </div>
+
+          <div formArrayName="handrail" class="row">
+            <h6 class="sub-head">
+              HANDRAILS and RAILINGS&nbsp;
+              <span
+                ><button mat-flat-button (click)="addHandrails()">
+                  Add Handrails & Railings
+                </button></span
+              >&nbsp;<span></span>
+            </h6>
+            <div
+              *ngFor="
+                let handrailSingle of handrailsForm.controls;
+                let i = index
+              "
+              [formGroupName]="i"
+              class="row"
+            >
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Material</mat-label>
+                  <mat-select
+                    formControlName="interiorHandrailsMaterial"
+                    multiple
+                  >
+                    <mat-option
+                      *ngFor="let option of interiorHandrailsMaterialOptions"
+                      [value]="option"
+                      >{{ option }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div
+                class="col-md-6"
+                *ngIf="
+                  handrailSingle
+                    .get('interiorHandrailsMaterial')
+                    ?.value?.includes('Other')
+                "
+              >
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input
+                    matInput
+                    formControlName="otherInteriorHandrailsMaterial"
+                  />
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Condition</mat-label>
+                  <mat-select
+                    formControlName="interiorHandrailsCondition"
+                    multiple
+                  >
+                    <mat-option
+                      *ngFor="let option of interiorHandrailsConditionOptions"
+                      [value]="option"
+                      >{{ option }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div
+                class="col-md-6"
+                *ngIf="
+                  handrailSingle
+                    .get('interiorHandrailsCondition')
+                    ?.value?.includes('Other')
+                "
+              >
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input
+                    matInput
+                    formControlName="otherInteriorHandrailsCondition"
+                  />
+                </mat-form-field>
+              </div>
+              <div class="col-md-12">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Comments</mat-label>
+                  <input matInput formControlName="interiorHandrailsComments" />
+                </mat-form-field>
+              </div>
+
+              <div class="col-md-12 text-end mb-3">
+                <button
+                  mat-flat-button
+                  (click)="removeHandrails(i)"
+                  style="
+                    margin-right: 8px;
+                    background-color: #ed636d;
+                    color: white;
+                  "
+                >
+                  Remove
+                </button>
+              </div>
+
+              <app-image-uploader
+                [imageName]="interiorHandrailsImage + i"
+              ></app-image-uploader>
+            </div>
+          </div>
+
+          <div formGroupName="smokeDetector" class="row">
+            <h6 class="sub-head">SMOKE / CO - DETECTORS</h6>
+            <div class="col-md-12">
+              <mat-form-field class="general-full-width">
+                <mat-label>Comments</mat-label>
+                <mat-select
+                  formControlName="interiorSmokeDetectorComments"
+                  multiple
+                >
+                  <mat-option
+                    *ngFor="let option of interiorSmokeDetectorCommentsOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-12"
+              *ngIf="
+                interiorDetails
+                  .get('smokeDetector.interiorSmokeDetectorComments')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input
+                  matInput
+                  formControlName="otherInteriorSmokeDetectorComments"
+                />
+              </mat-form-field>
+            </div>
+          </div>
+
+          <app-image-uploader
+            [imageName]="interiorSmokeImage"
+          ></app-image-uploader>
+
+          <div formGroupName="skylight" class="row">
+            <h6 class="sub-head">SKY LIGHT</h6>
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Type</mat-label>
+                <mat-select formControlName="interiorSkylightType" multiple>
+                  <mat-option
+                    *ngFor="let option of interiorSkylightTypeOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-6"
+              *ngIf="
+                interiorDetails
+                  .get('skylight.interiorSkylightType')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input matInput formControlName="otherInteriorSkylightType" />
+              </mat-form-field>
+            </div>
+            <div class="col-md-12">
+              <mat-form-field class="general-full-width">
+                <mat-label>Comments</mat-label>
+                <mat-select formControlName="interiorSkylightComments" multiple>
+                  <mat-option
+                    *ngFor="let option of interiorSkylightCommentsOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-12"
+              *ngIf="
+                interiorDetails
+                  .get('skylight.interiorSkylightComments')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input
+                  matInput
+                  formControlName="otherInteriorSkylightComments"
+                />
+              </mat-form-field>
+            </div>
+          </div>
+
+          <app-image-uploader
+            [imageName]="interiorSkylightImage"
+          ></app-image-uploader>
+
+          <div formArrayName="fireplace" class="row">
+            <h6 class="sub-head">
+              FIREPLACE&nbsp;
+              <span
+                ><button mat-flat-button (click)="addFireplace()">
+                  Add Stairs
+                </button></span
+              >&nbsp;<span></span>
+            </h6>
+            <div
+              *ngFor="
+                let firePlaceSingle of firePlaceForm.controls;
+                let i = index
+              "
+              [formGroupName]="i"
+              class="row"
+            >
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Location</mat-label>
+                  <mat-select
+                    formControlName="interiorFireplaceLocation"
+                    multiple
+                  >
+                    <mat-option
+                      *ngFor="let option of interiorFireplaceLocationOptions"
+                      [value]="option"
+                      >{{ option }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div
+                class="col-md-6"
+                *ngIf="
+                  firePlaceSingle
+                    .get('interiorFireplaceLocation')
+                    ?.value?.includes('Other')
+                "
+              >
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input
+                    matInput
+                    formControlName="otherInteriorFireplaceLocation"
+                  />
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Type</mat-label>
+                  <mat-select formControlName="interiorFireplaceType" multiple>
+                    <mat-option
+                      *ngFor="let option of interiorFireplaceTypeOptions"
+                      [value]="option"
+                      >{{ option }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div
+                class="col-md-6"
+                *ngIf="
+                  firePlaceSingle
+                    .get('interiorFireplaceType')
+                    ?.value?.includes('Other')
+                "
+              >
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input
+                    matInput
+                    formControlName="otherInteriorFireplaceType"
+                  />
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Condition</mat-label>
+                  <input
+                    matInput
+                    formControlName="interiorFireplaceCondition"
+                  />
+                </mat-form-field>
+              </div>
+
+              <div class="col-md-12">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Comments</mat-label>
+                  <mat-select
+                    formControlName="interiorFireplaceComments"
+                    multiple
+                  >
+                    <mat-option
+                      *ngFor="let option of interiorFireplaceCommentsOptions"
+                      [value]="option"
+                      >{{ option }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div
+                class="col-md-12"
+                *ngIf="
+                  firePlaceSingle
+                    .get('interiorFireplaceComments')
+                    ?.value?.includes('Other')
+                "
+              >
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input
+                    matInput
+                    formControlName="otherInteriorFireplaceComments"
+                  />
+                </mat-form-field>
+              </div>
+
+              <div class="col-md-12 text-end mb-3">
+                <button
+                  mat-flat-button
+                  (click)="removeFireplace(i)"
+                  style="
+                    margin-right: 8px;
+                    background-color: #ed636d;
+                    color: white;
+                  "
+                >
+                  Remove
+                </button>
+              </div>
+
+              <app-image-uploader
+                [imageName]="interiorFireplaceImage + i"
+              ></app-image-uploader>
+            </div>
+          </div>
+
+          <div formGroupName="floorDrain" class="row">
+            <h6 class="sub-head">FLOOR DRAIN</h6>
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Condition</mat-label>
+                <mat-select
+                  formControlName="interiorFloorDrainCondition"
+                  multiple
+                >
+                  <mat-option
+                    *ngFor="let option of interiorFloorDrainConditionOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-6"
+              *ngIf="
+                interiorDetails
+                  .get('floorDrain.interiorFloorDrainCondition')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input
+                  matInput
+                  formControlName="otherInteriorFloorDrainCondition"
+                />
+              </mat-form-field>
+            </div>
+            <div class="col-md-12">
+              <mat-form-field class="general-full-width">
+                <mat-label>Comments</mat-label>
+                <mat-select
+                  formControlName="interiorFloorDrainComments"
+                  multiple
+                >
+                  <mat-option
+                    *ngFor="let option of interiorFloorDrainCommentsOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-12"
+              *ngIf="
+                interiorDetails
+                  .get('floorDrain.interiorFloorDrainComments')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input
+                  matInput
+                  formControlName="otherInteriorFloorDrainComments"
+                />
+              </mat-form-field>
+            </div>
+            <app-image-uploader
+              [imageName]="interiorFloorDrainImage"
+            ></app-image-uploader>
+          </div>
+
+          <div formGroupName="attic" class="row">
+            <h6 class="sub-head">ATTICS</h6>
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Access</mat-label>
+                <mat-select formControlName="interiorAtticAccess" multiple>
+                  <mat-option
+                    *ngFor="let option of interiorAtticAccessOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-6"
+              *ngIf="
+                interiorDetails
+                  .get('attic.interiorAtticAccess')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input matInput formControlName="otherInteriorAtticAccess" />
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Location</mat-label>
+                <mat-select formControlName="interiorAtticLocation" multiple>
+                  <mat-option
+                    *ngFor="let option of interiorAtticLocationOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-6"
+              *ngIf="
+                interiorDetails
+                  .get('attic.interiorAtticLocation')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input matInput formControlName="otherInteriorAtticLocation" />
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Method of Inspection</mat-label>
+                <mat-select
+                  formControlName="interiorAtticInspectionMethod"
+                  multiple
+                >
+                  <mat-option
+                    *ngFor="let option of interiorAtticInspectionMethodOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-6"
+              *ngIf="
+                interiorDetails
+                  .get('attic.interiorAtticInspectionMethod')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input
+                  matInput
+                  formControlName="otherInteriorAtticInspectionMethod"
+                />
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Roof Framing</mat-label>
+                <mat-select formControlName="interiorAtticRoofFraming" multiple>
+                  <mat-option
+                    *ngFor="let option of interiorAtticRoofFramingOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-6"
+              *ngIf="
+                interiorDetails
+                  .get('attic.interiorAtticRoofFraming')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input
+                  matInput
+                  formControlName="otherInteriorAtticRoofFraming"
+                />
+              </mat-form-field>
+            </div>
+
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Sheathing</mat-label>
+                <mat-select formControlName="interiorAtticSheathing" multiple>
+                  <mat-option
+                    *ngFor="let option of interiorAtticSheathingOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-6"
+              *ngIf="
+                interiorDetails
+                  .get('attic.interiorAtticSheathing')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input matInput formControlName="otherInteriorAtticSheathing" />
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Insulation</mat-label>
+                <mat-select
+                  formControlName="interiorAtticInsulationType"
+                  multiple
+                >
+                  <mat-option
+                    *ngFor="let option of interiorAtticInsulationTypeOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-6"
+              *ngIf="
+                interiorDetails
+                  .get('attic.interiorAtticInsulationType')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input
+                  matInput
+                  formControlName="otherInteriorAtticInsulationType"
+                />
+              </mat-form-field>
+            </div>
+
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Insulation Depth</mat-label>
+                <mat-select
+                  formControlName="interiorAtticInsulationDepth"
+                  multiple
+                >
+                  <mat-option
+                    *ngFor="let option of interiorAtticInsulationDepthOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-6"
+              *ngIf="
+                interiorDetails
+                  .get('attic.interiorAtticInsulationDepth')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input
+                  matInput
+                  formControlName="otherInteriorAtticInsulationDepth"
+                />
+              </mat-form-field>
+            </div>
+
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Vapor Barrier</mat-label>
+                <mat-select
+                  formControlName="interiorAtticVaporBarrier"
+                  multiple
+                >
+                  <mat-option
+                    *ngFor="let option of interiorAtticVaporBarrierOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-6"
+              *ngIf="
+                interiorDetails
+                  .get('attic.interiorAtticVaporBarrier')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input
+                  matInput
+                  formControlName="otherInteriorAtticVaporBarrier"
+                />
+              </mat-form-field>
+            </div>
+
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Ventilation</mat-label>
+                <mat-select formControlName="interiorAtticVentilation" multiple>
+                  <mat-option
+                    *ngFor="let option of interiorAtticVentilationOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-6"
+              *ngIf="
+                interiorDetails
+                  .get('attic.interiorAtticVentilation')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input
+                  matInput
+                  formControlName="otherInteriorAtticVentilation"
+                />
+              </mat-form-field>
+            </div>
+
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Fans Exhausted To Attic</mat-label>
+                <mat-select formControlName="interiorAtticExhaustFan" multiple>
+                  <mat-option
+                    *ngFor="let option of interiorAtticExhaustFanOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-6"
+              *ngIf="
+                interiorDetails
+                  .get('attic.interiorAtticExhaustFan')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input
+                  matInput
+                  formControlName="otherInteriorAtticExhaustFan"
+                />
+              </mat-form-field>
+            </div>
+
+            <app-image-uploader
+              [imageName]="interiorAtticsImage"
+            ></app-image-uploader>
+
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Comments</mat-label>
+                <mat-select formControlName="interiorAtticComments" multiple>
+                  <mat-option
+                    *ngFor="let option of interiorAtticCommentsOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-6"
+              *ngIf="
+                interiorDetails
+                  .get('attic.interiorAtticComments')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input matInput formControlName="otherInteriorAtticComments" />
+              </mat-form-field>
+            </div>
+          </div>
+
+          <app-image-uploader
+            [imageName]="interiorCommentsImage"
+          ></app-image-uploader>
+
+          <div formGroupName="sumpPump" class="row">
+            <h6 class="sub-head">SUMP PUMP</h6>
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Location</mat-label>
+                <mat-select formControlName="interiorSumpPumpLocation" multiple>
+                  <mat-option
+                    *ngFor="let option of interiorSumpPumpLocationOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-6"
+              *ngIf="
+                interiorDetails
+                  .get('sumpPump.interiorSumpPumpLocation')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input
+                  matInput
+                  formControlName="otherInteriorSumpPumpLocation"
+                />
+              </mat-form-field>
+            </div>
+
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Condition</mat-label>
+                <mat-select
+                  formControlName="interiorSumpPumpCondition"
+                  multiple
+                >
+                  <mat-option
+                    *ngFor="let option of interiorSumpPumpConditionOptions"
+                    [value]="option"
+                    >{{ option }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="col-md-6"
+              *ngIf="
+                interiorDetails
+                  .get('sumpPump.interiorSumpPumpCondition')
+                  ?.value?.includes('Other')
+              "
+            >
+              <mat-form-field class="general-full-width">
+                <mat-label>Other</mat-label>
+                <input
+                  matInput
+                  formControlName="otherInteriorSumpPumpCondition"
+                />
+              </mat-form-field>
+            </div>
+
+            <div class="col-md-12">
+              <mat-form-field class="general-full-width">
+                <mat-label>Comments</mat-label>
+                <input matInput formControlName="interiorSumpPumpComments" />
+              </mat-form-field>
+            </div>
+          </div>
+
+          <app-image-uploader
+            [imageName]="interiorSumpPumpImage"
+          ></app-image-uploader>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

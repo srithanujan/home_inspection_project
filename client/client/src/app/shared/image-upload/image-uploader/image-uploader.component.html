@@ -1,0 +1,36 @@
+<div class="row custom-row">
+  <div class="card border-primary mb-3 border-success custom-card-image">
+    <div class="card-body text-primary d-flex flex-column align-items-center">
+      <div>
+        <div class="upload-section">
+          <div class="file-upload">
+            <label class="file-label" for="fileInput">
+              Choose
+              <input type="file" id="fileInput" (change)="onFileChange($event)" accept="image/*" />
+            </label>
+          </div>
+          <button (click)="submitImage()" [disabled]="!image">Upload</button>
+        </div>
+
+        <p class="info-paragraph">
+          {{ selectedFileName }}
+        </p>
+
+      </div>
+      <div>
+        <div class="show-images">
+          <div *ngIf="loading">
+            <mat-progress-bar mode="buffer"></mat-progress-bar>
+          </div>
+          <div class="image-grid" *ngIf="!loading">
+            <div *ngFor="let image of images" class="image-container">
+              <img [src]="image.image" alt="images" />
+              <mat-icon class="delete-icon" (click)="deleteImage(image._id)">delete
+              </mat-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

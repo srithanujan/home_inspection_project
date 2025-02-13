@@ -1,0 +1,165 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card border-primary mb-3 custom-card">
+      <form [formGroup]="electricalSystemDetails" class="row g-3">
+        <h5 class="sub-head">ELECTRICAL SYSTEM</h5>
+
+        <div formGroupName="mainElectricalPanel" class="row">
+          <h6 class="sub-head">MAIN ELECTRICAL PANEL</h6>
+
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Panel Location</mat-label>
+              <mat-select formControlName="electricalMainElectricalPanelLocation" multiple>
+                <mat-option *ngFor="let option of electricalMainElectricalPanelLocationOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6" *ngIf="electricalSystemDetails.get('mainElectricalPanel.electricalMainElectricalPanelLocation')?.value?.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherElectricalMainElectricalPanelLocation">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Condition</mat-label>
+              <mat-select formControlName="electricalMainElectricalPanelCondition" multiple>
+                <mat-option *ngFor="let option of electricalMainElectricalPanelConditionOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6" *ngIf="electricalSystemDetails.get('mainElectricalPanel.electricalMainElectricalPanelCondition')?.value?.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherElectricalMainElectricalPanelCondition">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Adequate Clearance to Panel</mat-label>
+              <mat-select formControlName="electricalAdequateClearanceToPanel" multiple>
+                <mat-option *ngFor="let option of electricalAdequateClearanceToPanelOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6" *ngIf="electricalSystemDetails.get('mainElectricalPanel.electricalAdequateClearanceToPanel')?.value?.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherElectricalAdequateClearanceToPanel">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Main Breaker Size</mat-label>
+              <mat-select formControlName="electricalMainBreakerSize" multiple>
+                <mat-option *ngFor="let option of electricalMainBreakerSizeOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6" *ngIf="electricalSystemDetails.get('mainElectricalPanel.electricalMainBreakerSize')?.value?.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherElectricalMainBreakerSize">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Service Size Amps</mat-label>
+              <mat-select formControlName="electricalServiceSizeAmps" multiple>
+                <mat-option *ngFor="let option of electricalServiceSizeAmpsOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6" *ngIf="electricalSystemDetails.get('mainElectricalPanel.electricalServiceSizeAmps')?.value?.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherElectricalServiceSizeAmps">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Volts</mat-label>
+              <mat-select formControlName="electricalVolts" multiple>
+                <mat-option *ngFor="let option of electricalVoltsOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6" *ngIf="electricalSystemDetails.get('mainElectricalPanel.electricalVolts')?.value?.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherElectricalVolts">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Appears Grounded</mat-label>
+              <mat-select formControlName="electricalAppearsGrounded" multiple>
+                <mat-option *ngFor="let option of electricalAppearsGroundedOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6" *ngIf="electricalSystemDetails.get('mainElectricalPanel.electricalAppearsGrounded')?.value?.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherElectricalAppearsGrounded">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Main Wiring</mat-label>
+              <mat-select formControlName="electricalMainWiring" multiple>
+                <mat-option *ngFor="let option of electricalMainWiringOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6" *ngIf="electricalSystemDetails.get('mainElectricalPanel.electricalMainWiring')?.value?.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherElectricalMainWiring">
+            </mat-form-field>
+          </div>
+          <div class="col-md-12">
+            <mat-form-field class="general-full-width">
+              <mat-label>Comments</mat-label>
+              <mat-select formControlName="electricalMainElectricalPanelComments" multiple>
+                <mat-option *ngFor="let option of electricalMainElectricalPanelCommentsOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-12" *ngIf="electricalSystemDetails.get('mainElectricalPanel.electricalMainElectricalPanelComments')?.value?.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherElectricalMainElectricalPanelComments">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <app-image-uploader [imageName]="electricalSystemMainElectricalPanelImage"></app-image-uploader>
+
+        <div formGroupName="lightingAndOutlets" class="row">
+          <h6 class="sub-head">LIGHTINGS AND OUTLETS</h6>
+          <div class="col-md-12">
+            <mat-form-field class="general-full-width">
+              <mat-label>Comments</mat-label>
+              <textarea matInput formControlName="electricallightsAndOutletsComments"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+
+
+        <app-image-uploader [imageName]="electricalSystemLightAndOutletsImage"></app-image-uploader>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+

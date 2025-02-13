@@ -1,0 +1,430 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card border-primary mb-3 custom-card">
+      <form [formGroup]="kitchenDetails" class="row g-3">
+        <div formArrayName="kitchens">
+          <div *ngFor="let kitchen of kitchens?.controls; let i = index" [formGroupName]="i">
+            <div class="row">
+              <h5 class="sub-head">KITCHEN</h5>
+              <div class="col-md-3">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Name</mat-label>
+                  <input matInput formControlName="name" required>
+                  <mat-error *ngIf="kitchen?.get('name')?.hasError('required')">Kitchen Name is required</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-3" style="margin-top:7px; margin-bottom: 26px;display: flex; justify-content: flex-end;">
+                <button mat-flat-button (click)="removeKitchen(i)" style="margin-right: 8px; background-color: #ED636D; color: white;">
+                  Remove
+                </button>
+              </div>
+            </div>
+            <div formGroupName="kitchenCountertops" class="row">
+              <h6 class="sub-head">Countertops</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Conditions</mat-label>
+                  <mat-select formControlName="kitchenCountertopsCondition" multiple>
+                    <mat-option *ngFor="let option of countertopsConditionOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="kitchen.get('kitchenCountertops.kitchenCountertopsCondition')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherkitchenCountertopsCondition">
+                </mat-form-field>
+              </div>
+              <div class="col-md-12">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Comments</mat-label>
+                  <mat-select formControlName="countertopsComments" multiple>
+                    <mat-option *ngFor="let option of countertopsCommentsOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-12" *ngIf="kitchen.get('kitchenCountertops.countertopsComments')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherCountertopsComments">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <app-image-uploader [imageName]="kitchenCountertopsImage + i"></app-image-uploader>
+
+
+
+            <div formGroupName="kitchenCabinets" class="row">
+              <h6 class="sub-head">Cabinets</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Conditions</mat-label>
+                  <mat-select formControlName="kitchenCabinetsCondition" multiple>
+                    <mat-option *ngFor="let option of cabinetsConditionOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="kitchen.get('kitchenCountertops.kitchenCountertopsCondition')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherKitchenCabinetsCondition">
+                </mat-form-field>
+              </div>
+              <div class="col-md-12">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Comments</mat-label>
+                  <mat-select formControlName="kitchenCabinetsComments" multiple>
+                    <mat-option *ngFor="let option of cabinetsCommentsOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-12" *ngIf="kitchen.get('kitchenCountertops.countertopsComments')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherKitchenCabinetsComments">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <app-image-uploader [imageName]="kitchenCabinetsImage + i"></app-image-uploader>
+
+
+            <div formGroupName="kitchenPlumbings" class="row">
+              <h6 class="sub-head">Plumbing</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Conditions</mat-label>
+                  <mat-select formControlName="kitchenPlumbingsCondition" multiple>
+                    <mat-option *ngFor="let option of plumbingConditionOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="kitchen.get('kitchenCountertops.kitchenCountertopsCondition')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherKitchenPlumbingsCondition">
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Faucet</mat-label>
+                  <mat-select formControlName="kitchenPlumbingsFaucet" multiple>
+                    <mat-option *ngFor="let option of faucetOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="kitchen.get('kitchenCountertops.countertopsComments')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherKitchenPlumbingsFaucet">
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Functional Drainage</mat-label>
+                  <mat-select formControlName="kitchenPlumbingsfunctionalDrainage" multiple>
+                    <mat-option *ngFor="let option of functionalDrainageOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="kitchen.get('kitchenCountertops.kitchenPlumbingsfunctionalDrainage')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherKitchenPlumbingsFunctionalDrainage">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <app-image-uploader [imageName]="kitchenPlumbingImage + i"></app-image-uploader>
+
+
+            <div formGroupName="kitchenFloors" class="row">
+              <h6 class="sub-head">Floor</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Material</mat-label>
+                  <mat-select formControlName="kitchenFloorMaterial" multiple>
+                    <mat-option *ngFor="let option of floorMaterialOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="kitchen.get('kitchenFloors.kitchenFloorMaterial')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherkitchenFloorMaterial">
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Condition</mat-label>
+                  <mat-select formControlName="kitchenFloorCondition" multiple>
+                    <mat-option *ngFor="let option of floorConditionOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="kitchen.get('kitchenFloors.kitchenFloorCondition')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherKitchenFloorCondition">
+                </mat-form-field>
+              </div>
+              <div class="col-md-12">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Comments</mat-label>
+                  <mat-select formControlName="kitchenFloorComments" multiple>
+                    <mat-option *ngFor="let option of floorCommentsOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-12" *ngIf="kitchen.get('kitchenFloors.kitchenFloorComments')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherKitchenFloorComments">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <app-image-uploader [imageName]="kitchenFloorImage + i"></app-image-uploader>
+
+
+            <div formGroupName="kitchenWalls" class="row">
+              <h6 class="sub-head">Walls</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Condition</mat-label>
+                  <mat-select formControlName="kitchenWallsCondition" multiple>
+                    <mat-option *ngFor="let option of wallsConditionOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="kitchen.get('kitchenWalls.kitchenWallsCondition')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherKitchenWallsCondition">
+                </mat-form-field>
+              </div>
+            </div>
+
+
+            <app-image-uploader [imageName]="kitchenWallsImage + i"></app-image-uploader>
+
+
+
+            <div formGroupName="kitchenCeilings" class="row">
+              <h6 class="sub-head">Floor</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Condition</mat-label>
+                  <mat-select formControlName="kitchenCeilingsCondition" multiple>
+                    <mat-option *ngFor="let option of ceilingsConditionOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="kitchen.get('kitchenCeilings.kitchenCeilingsCondition')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherKitchenCeilingsCondition">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <app-image-uploader [imageName]="kitchenCeilingsImage + i"></app-image-uploader>
+
+
+            <div formGroupName="kitchenElectricals" class="row">
+              <h6 class="sub-head">Electrical outlets and lights</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Condition</mat-label>
+                  <mat-select formControlName="kitchenElectricalsCondition" multiple>
+                    <mat-option *ngFor="let option of electricalConditionOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="kitchen.get('kitchenElectricals.kitchenElectricalsCondition')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherKitchenElectricalsCondition">
+                </mat-form-field>
+              </div>
+            </div>
+
+
+            <app-image-uploader [imageName]="kitchenElectricalOutletsAndLightsImage + i"></app-image-uploader>
+
+
+            <div formGroupName="kitchenAppliances" class="row">
+              <h6 class="sub-head">Appliances</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Range</mat-label>
+                  <mat-select formControlName="kitchenAppliancesRange" multiple>
+                    <mat-option *ngFor="let option of rangeOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="kitchen.get('kitchenAppliances.kitchenElectricalsCondition')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherKitchenAppliancesRange">
+                </mat-form-field>
+              </div>
+
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Condition</mat-label>
+                  <mat-select formControlName="kitchenAppliancesRangeCondition" multiple>
+                    <mat-option *ngFor="let option of rangeConditionOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="kitchen.get('kitchenAppliances.kitchenAppliancesRangeCondition')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherKitchenAppliancesCondition">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <app-image-uploader [imageName]="kitchenAppliancesImage + i"></app-image-uploader>
+
+
+            <div formGroupName="kitchenDishwashers" class="row">
+              <h6 class="sub-head">Dishwasher</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Dishwasher</mat-label>
+                  <mat-select formControlName="kitchenDishwasher" multiple>
+                    <mat-option *ngFor="let option of dishwasherOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="kitchen.get('kitchenDishwashers.kitchenDishwasher')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherKitchenDishwasher">
+                </mat-form-field>
+              </div>
+
+                <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Condition</mat-label>
+                  <mat-select formControlName="kitchenDishwashersCondition" multiple>
+                    <mat-option *ngFor="let option of dishwasherConditionOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="kitchen.get('kitchenDishwashers.kitchenDishwashersCondition')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherkitchenDishwashersCondition">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <app-image-uploader [imageName]="kitchenDishwasherImage + i"></app-image-uploader>
+
+
+
+            <div formGroupName="kitchenRangeHoodFans" class="row">
+              <h6 class="sub-head">Range Hood fan</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Range Hood Fan</mat-label>
+                  <mat-select formControlName="kitchenRangeHoodFan" multiple>
+                    <mat-option *ngFor="let option of rangeHoodFanOptons" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="kitchen.get('kitchenRangeHoodFans.kitchenRangeHoodFan')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherKitchenRangeHoodFan">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <app-image-uploader [imageName]="kitchenRangehoodFanImage + i"></app-image-uploader>
+
+
+            <div formGroupName="kitchenRefrigerators" class="row">
+              <h6 class="sub-head">Refrigerator</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Refrigerator</mat-label>
+                  <mat-select formControlName="kitchenRefrigerator" multiple>
+                    <mat-option *ngFor="let option of refrigeratorOptiions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="kitchen.get('kitchenRefrigerators.kitchenRefrigerator')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherKitchenRefrigerator">
+                </mat-form-field>
+              </div>
+
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Condition</mat-label>
+                  <mat-select formControlName="kitchenRefrigeratorCondition" multiple>
+                    <mat-option *ngFor="let option of refrigeratorConditionOptiions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="kitchen.get('kitchenRefrigerators.kitchenRefrigeratorCondition')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherKitchenRefrigeratorCondition">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <app-image-uploader [imageName]="kitchenRefrigeratorImage + i"></app-image-uploader>
+
+
+            <div formGroupName="kitchenMicrowaves" class="row">
+              <h6 class="sub-head">Microwave</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Condition</mat-label>
+                  <mat-select formControlName="kitchenMicrowave" multiple>
+                    <mat-option *ngFor="let option of microwaveStatusOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="kitchen.get('kitchenMicrowaves.kitchenMicrowave')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherKitchenMicrowave">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <app-image-uploader [imageName]="kitchenMicrowaveImage + i"></app-image-uploader>
+
+
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Open ground/Reverse polarity</mat-label>
+                <mat-select formControlName="kitchenOpenGroundReversePolarity" multiple>
+                  <mat-option *ngFor="let option of openGroundReversePolarityOptions" [value]="option">{{ option }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <app-image-uploader [imageName]="kitchenOpenGroundImage + i"></app-image-uploader>
+
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <button mat-flat-button (click)="addKitchen()" [disabled]="!kitchenDetails.valid">
+            Add Kitchen
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

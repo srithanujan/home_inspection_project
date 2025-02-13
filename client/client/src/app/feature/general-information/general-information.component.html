@@ -1,0 +1,83 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card border-primary mb-3 custom-card">
+      <form [formGroup]="combinedDetails" class="row g-3">
+        <h5 class="sub-head">GENERAL INFORMATION</h5>
+        <br>
+        <h6 class="sub-head">CLIENT INFORMATION</h6>
+        <div formGroupName="clientInformation" class="row">
+          <div class="col-md-3">
+            <mat-form-field class="general-full-width">
+              <mat-label>Contact Name</mat-label>
+              <input matInput formControlName="contactName" placeholder="Ex. John Doe">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-3">
+            <mat-form-field class="general-full-width">
+              <mat-label>Client Address</mat-label>
+              <input matInput formControlName="clientAddress" placeholder="Ex. 123 Main St">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-3">
+            <mat-form-field class="general-full-width">
+              <mat-label>Email</mat-label>
+              <input type="email" matInput formControlName="email" placeholder="Ex. pat@example.com">
+              <mat-error *ngIf="combinedDetails.get('clientInformation.email')?.hasError('email') && !combinedDetails.get('clientInformation.email')?.hasError('required')">Please enter a valid email address</mat-error>
+            </mat-form-field>
+          </div>
+
+
+
+          <div class="col-md-3">
+            <mat-form-field class="general-full-width">
+              <mat-label>Phone Number</mat-label>
+              <input type="tel" matInput formControlName="phoneNumber" placeholder="Ex. (123) 456-7890">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <hr>
+
+        <h6 class="sub-head">INSPECTION COMPANY</h6>
+        <div formGroupName="inspectionCompany" class="row">
+          <div class="col-md-3">
+            <mat-form-field class="general-full-width">
+              <mat-label>Inspector Name</mat-label>
+              <input matInput formControlName="inspectorName" placeholder="Ex. John Doe">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-3">
+            <mat-form-field class="general-full-width">
+              <mat-label>Inspection Address</mat-label>
+              <input matInput formControlName="inspectionAddress" placeholder="Ex. 123 Main St">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-3">
+            <mat-form-field class="general-full-width">
+              <mat-label>Email</mat-label>
+              <input type="email" matInput formControlName="email" placeholder="Ex. pat@example.com">
+              <mat-error *ngIf="combinedDetails.get('inspectionCompany.email')?.hasError('email') && !combinedDetails.get('inspectionCompany.email')?.hasError('required')">Please enter a valid email address</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-3">
+            <mat-form-field class="general-full-width">
+              <mat-label>Phone Number</mat-label>
+              <input type="tel" matInput formControlName="phoneNumber" placeholder="Ex. (123) 456-7890">
+            </mat-form-field>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+

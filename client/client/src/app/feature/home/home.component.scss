@@ -1,0 +1,82 @@
+section {
+  display: table;
+}
+
+.example-label {
+  display: table-cell;
+  font-size: 14px;
+  margin-left: 8px;
+  min-width: 120px;
+}
+
+.example-button-row {
+  display: table-cell;
+  max-width: 600px;
+}
+
+.example-button-row .mat-mdc-button-base {
+  margin: 8px 8px 8px 0;
+}
+
+.example-flex-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.example-button-container {
+  display: flex;
+  justify-content: center;
+  width: 120px;
+}
+
+.container-top {
+  margin-top: 12px;
+}
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1320px
+);
+
+
+.mat-stepper-vertical {
+  margin-top: 8px;
+}
+
+.mat-mdc-form-field {
+  margin-top: 16px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 20px !important;
+  margin-left: 20px !important;
+}
+
+.button-back {
+  margin-right: 20px !important;
+}
+
+.vertical-label {
+  writing-mode: vertical-rl; /* Rotates the text vertically */
+  text-orientation: mixed;  /* Ensures characters are upright */
+  transform: rotate(180deg); /* Flips the text to read top-to-bottom */
+  text-align: center;
+}
+
+.mat-step-header {
+  align-items: center;
+  justify-content: center;
+}
+
+.mat-step-header .vertical-label {
+  height: auto !important;
+}
+
+
+

@@ -1,0 +1,280 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card border-primary mb-3 custom-card">
+      <form [formGroup]="laundryDetails" class="row g-3">
+        <div formArrayName="laundrys">
+          <div *ngFor="let laundry of laundrys.controls; let i = index" [formGroupName]="i">
+            <div class="row">
+              <h5 class="sub-head">LAUNDRY</h5>
+              <div class="col-md-3">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Name</mat-label>
+                  <input matInput formControlName="name" required>
+                  <mat-error *ngIf="laundry.get('name')?.hasError('required')">Laundry Name is required</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-3" style="margin-top:7px; margin-bottom: 26px;display: flex; justify-content: flex-end;">
+                <button mat-flat-button (click)="removelaundrys(i)" style="margin-right: 8px; background-color: #ED636D; color: white;">
+                  Remove
+                </button>
+              </div>
+            </div>
+
+            <div class="row">
+              <h6 class="sub-head">Ceiling</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Ceiling</mat-label>
+                  <mat-select formControlName="laundryCeiling" multiple>
+                    <mat-option *ngFor="let option of laundryCeilingOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="laundry.get('laundryCeiling')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherLaundryCeiling">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <h6 class="sub-head">Walls</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Walls</mat-label>
+                  <mat-select formControlName="laundryWalls" multiple>
+                    <mat-option *ngFor="let option of laundryWallsOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="laundry.get('laundryWalls')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherLaundryWalls">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <h6 class="sub-head">Floor</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Floor</mat-label>
+                  <mat-select formControlName="laundryFloor" multiple>
+                    <mat-option *ngFor="let option of laundryFloorsOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="laundry.get('laundryFloor')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherLaundryFloor">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <h6 class="sub-head">Washer</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Washer</mat-label>
+                  <mat-select formControlName="laundryWasher" multiple>
+                    <mat-option *ngFor="let option of laundryWasherOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="laundry.get('laundryWasher')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherLaundryWasher">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <h6 class="sub-head">Dryer</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Dryer</mat-label>
+                  <mat-select formControlName="laundryDryer" multiple>
+                    <mat-option *ngFor="let option of laundryDryerOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="laundry.get('laundryDryer')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherLaundryDryer">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <h6 class="sub-head">Pipes Leak</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Pipes Leak</mat-label>
+                  <mat-select formControlName="laundryPipesLeak" multiple>
+                    <mat-option *ngFor="let option of laundryPipesLeakOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="laundry.get('laundryPipesLeak')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherLaundryPipesLeak">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <h6 class="sub-head">Washer Drain</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Washer Drain</mat-label>
+                  <mat-select formControlName="laundryWasherDrain" multiple>
+                    <mat-option *ngFor="let option of laundryWasherDrainOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="laundry.get('laundryWasherDrain')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherLaundryWasherDrain">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <h6 class="sub-head">LAUNDRY SINK</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Laundry Sink</mat-label>
+                  <mat-select formControlName="laundrySink" multiple>
+                    <mat-option *ngFor="let option of laundrySinkOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="laundry.get('laundrySink')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherLaundrySink">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <h6 class="sub-head">Faucet</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Faucet</mat-label>
+                  <mat-select formControlName="laundryFaucet" multiple>
+                    <mat-option *ngFor="let option of laundryFaucetOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="laundry.get('laundryFaucet')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherLaundryFaucet">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <h6 class="sub-head">Heat Source</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Heat Source</mat-label>
+                  <mat-select formControlName="laundryHeatSource" multiple>
+                    <mat-option *ngFor="let option of laundryHeatSourceOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="laundry.get('laundryHeatSource')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherLaundryHeatSource">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <h6 class="sub-head">Electrical</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Electrical</mat-label>
+                  <mat-select formControlName="laundryElectrical" multiple>
+                    <mat-option *ngFor="let option of laundryElectricalOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="laundry.get('laundryElectrical')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherLaundryElectrical">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <h6 class="sub-head">Room Vented</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Room Vented</mat-label>
+                  <mat-select formControlName="laundryRoomVented" multiple>
+                    <mat-option *ngFor="let option of laundryRoomVentedOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="laundry.get('laundryRoomVented')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherLaundryRoomVented">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <h6 class="sub-head">Dryer Vent</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Dryer Vent</mat-label>
+                  <mat-select formControlName="laundryDryerVent" multiple>
+                    <mat-option *ngFor="let option of laundryDryerVentOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="laundry.get('laundryDryerVent')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherLaundryDryerVent">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <mat-form-field class="general-full-width">
+                <mat-label>Comments</mat-label>
+                <input matInput formControlName="laundryComments">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <button mat-flat-button (click)="addlaundrys()" [disabled]="!laundryDetails.valid">
+            Add Laundry
+          </button>
+        </div>
+
+        <app-image-uploader [imageName]="laundryImage"></app-image-uploader>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+

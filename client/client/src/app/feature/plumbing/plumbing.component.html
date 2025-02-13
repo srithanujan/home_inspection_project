@@ -1,0 +1,222 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card border-primary mb-3 custom-card">
+      <form [formGroup]="plumbingDetails" class="row g-3">
+        <h5 class="sub-head">PLUMBING</h5>
+
+        <div formGroupName="regular" class="row">
+          <h6 class="sub-head">REGULAR</h6>
+
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Main Shut-off Location</mat-label>
+              <mat-select formControlName="plumbingMainShutoffLocation" multiple>
+                <mat-option *ngFor="let option of plumbingMainShutoffLocationOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6" *ngIf="plumbingDetails.get('regular.plumbingMainShutoffLocation')?.value.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherPlumbingMainShutoffLocation">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Water Entry Piping</mat-label>
+              <mat-select formControlName="plumbingWaterEntryPiping" multiple>
+                <mat-option *ngFor="let option of plumbingWaterEntryPipingOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6" *ngIf="plumbingDetails.get('regular.plumbingWaterEntryPiping')?.value.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherPlumbingWaterEntryPiping">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-12">
+            <mat-form-field class="general-full-width">
+              <mat-label>Lead Other Than Solder Joist</mat-label>
+              <mat-select formControlName="plumbingLeadOtherThanSolderJoist" multiple>
+                <mat-option *ngFor="let option of plumbingLeadOtherThanSolderJoistOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6" *ngIf="plumbingDetails.get('regular.plumbingLeadOtherThanSolderJoist')?.value.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherPlumbingLeadOtherThanSolderJoist">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Visible Water Distribution Piping</mat-label>
+              <mat-select formControlName="plumbingVisibleWaterDistributionPiping" multiple>
+                <mat-option *ngFor="let option of plumbingVisibleWaterDistributionPipingOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-12" *ngIf="plumbingDetails.get('regular.plumbingVisibleWaterDistributionPiping')?.value.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherPlumbingVisibleWaterDistributionPiping">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Condition</mat-label>
+              <mat-select formControlName="plumbingCondition" multiple>
+                <mat-option *ngFor="let option of plumbingConditionOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6" *ngIf="plumbingDetails.get('regular.plumbingCondition')?.value.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherPlumbingCondition">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Functional Flow</mat-label>
+              <mat-select formControlName="plumbingFunctionalFlow" multiple>
+                <mat-option *ngFor="let option of plumbingFunctionalFlowOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6" *ngIf="plumbingDetails.get('regular.plumbingFunctionalFlow')?.value.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherPlumbingFunctionalFlow">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Drain, Waste and Vent Pipe</mat-label>
+              <mat-select formControlName="plumbingDrainWasteAndVentPipe" multiple>
+                <mat-option *ngFor="let option of plumbingDrainWasteAndVentPipeOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6" *ngIf="plumbingDetails.get('regular.plumbingDrainWasteAndVentPipe')?.value.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherPlumbingDrainWasteAndVentPipe">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-12">
+            <mat-form-field class="general-full-width">
+              <mat-label>Comments</mat-label>
+              <textarea matInput formControlName="plumbingComments"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <app-image-uploader [imageName]="plumbingWaterMeterImage"></app-image-uploader>
+
+        <div formGroupName="waterHeater" class="row">
+          <h6 class="sub-head">WATER HEATER</h6>
+
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Type</mat-label>
+              <mat-select formControlName="plumbingWaterHeaterType" multiple>
+                <mat-option *ngFor="let option of plumbingWaterHeaterTypeOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6" *ngIf="plumbingDetails.get('waterHeater.plumbingWaterHeaterType')?.value.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherPlumbingWaterHeaterType">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Approximate Age</mat-label>
+              <input matInput formControlName="waterHeaterApproximateAge">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Energy Source</mat-label>
+              <mat-select formControlName="waterHeaterEnergySource" multiple>
+                <mat-option *ngFor="let option of plumbingWaterHeaterEnergySourceOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6" *ngIf="plumbingDetails.get('waterHeater.waterHeaterEnergySource')?.value.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherWaterHeaterEnergySource">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Capacity</mat-label>
+              <mat-select formControlName="waterHeaterCapacity" multiple>
+                <mat-option *ngFor="let option of plumbingWaterHeaterCapacityOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6" *ngIf="plumbingDetails.get('waterHeater.waterHeaterCapacity')?.value.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherWaterHeaterCapacity">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Operation</mat-label>
+              <mat-select formControlName="waterHeaterOperation" multiple>
+                <mat-option *ngFor="let option of plumbingWaterHeaterOperationOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6" *ngIf="plumbingDetails.get('waterHeater.waterHeaterOperation')?.value.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherWaterHeaterOperation">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field class="general-full-width">
+              <mat-label>Condition</mat-label>
+              <mat-select formControlName="waterHeaterCondition" multiple>
+                <mat-option *ngFor="let option of plumbingWaterHeaterConditionOptions" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6" *ngIf="plumbingDetails.get('waterHeater.waterHeaterCondition')?.value.includes('Other')">
+            <mat-form-field class="general-full-width">
+              <mat-label>Other</mat-label>
+              <input matInput formControlName="otherWaterHeaterCondition">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-12">
+            <mat-form-field class="general-full-width">
+              <mat-label>Comments</mat-label>
+              <textarea matInput formControlName="waterHeaterComments"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <app-image-uploader [imageName]="plumbingWaterHeaterImage"></app-image-uploader>
+      </form>
+    </div>
+  </div>
+</div>

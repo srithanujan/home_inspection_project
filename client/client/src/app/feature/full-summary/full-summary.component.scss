@@ -1,0 +1,103 @@
+.custom-card {
+  max-width: 98%;
+  padding: 20px;
+  margin: 20px;
+}
+
+@media (max-width: 768px) {
+  .custom-card {
+    padding: 10px;
+    margin: 10px;
+  }
+}
+.sub-head {
+  margin-top: 10px !important;
+  color: darkgray;
+}
+
+table {
+  width: 100%;
+}
+
+
+.mat-flat-button.color_create { background: #04AA6D !important; color: #ffffff !important;}
+
+
+
+.custom-card {
+  // width: 80%;
+  max-width: 98%;
+  padding: 20px;
+  margin: 20px;
+}
+
+@media (max-width: 768px) {
+  .custom-card {
+    padding: 10px;
+    margin: 10px;
+  }
+}
+.sub-head {
+  margin-top: 10px !important;
+  color: darkgray;
+}
+
+
+// .delete-icon {
+//   color: red;
+// }
+
+// .edit-icon {
+//   color: blue;
+// }
+
+
+
+
+
+
+.material-icons.color_delete { color: #ffffff;}
+// .mat-mini-fab.color_delete { color: #D31500; }
+.material-icons.color_edit { color: #ffffff;}
+
+// #D31500;
+// #3DB1F2;
+
+.mat-mdc-mini-fab.delete-icon {
+  width: 40px;
+  height: 40px;
+  background-color: #D31500;
+  border-radius: var(--mdc-fab-small-container-shape);
+  color: inherit;
+  color: var(--mat-fab-small-foreground-color, inherit);
+  box-shadow: var(--mdc-fab-small-container-elevation-shadow);
+}
+
+.mat-mdc-mini-fab.edit-icon {
+  width: 40px;
+  height: 40px;
+  background-color: #3DB1F2;
+  border-radius: var(--mdc-fab-small-container-shape);
+  color: inherit;
+  color: var(--mat-fab-small-foreground-color, inherit);
+  box-shadow: var(--mdc-fab-small-container-elevation-shadow);
+}
+
+th {
+  color: #ffffff;
+}
+
+td {
+  color: black;
+  font-weight: bold;
+}
+
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 20px !important;
+  margin-left: 20px !important;
+}
+
+// 469D47

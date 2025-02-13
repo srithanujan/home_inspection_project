@@ -1,0 +1,245 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card border-primary mb-3 custom-card">
+      <form [formGroup]="heatingSystemDetails" class="row g-3">
+        <h5 class="sub-head">Heating System</h5>
+
+
+        <div class="col-md-3">
+          <mat-form-field class="general-full-width">
+            <mat-label>Furnace Location</mat-label>
+            <mat-select formControlName="heatingSystemFurnaceLocation" multiple>
+              <mat-option *ngFor="let option of heatingSystemFurnaceLocationOptions" [value]="option">{{ option }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3" *ngIf="heatingSystemDetails.get('heatingSystemFurnaceLocation')?.value?.includes('Other')">
+          <mat-form-field class="general-full-width">
+            <mat-label>Other Furnace Location</mat-label>
+            <input matInput formControlName="otherHeatingSystemFurnaceLocation" placeholder="Specify other location">
+          </mat-form-field>
+        </div>
+
+
+        <div class="col-md-3">
+          <mat-form-field class="general-full-width">
+            <mat-label>Manufacturer</mat-label>
+            <input matInput formControlName="heatingSystemManufacturer" placeholder="Manufacturer">
+          </mat-form-field>
+        </div>
+
+
+        <div class="col-md-3">
+          <mat-form-field class="general-full-width">
+            <mat-label>Approximate Age</mat-label>
+            <input matInput formControlName="heatingSystemApproximateAge" placeholder="Approximate Age">
+          </mat-form-field>
+        </div>
+
+
+        <div class="col-md-3">
+          <mat-form-field class="general-full-width">
+            <mat-label>Energy Source</mat-label>
+            <mat-select formControlName="heatingSystemEnergySource" multiple>
+              <mat-option *ngFor="let option of heatingSystemEnergySourceOptions" [value]="option">{{ option }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3" *ngIf="heatingSystemDetails.get('heatingSystemEnergySource')?.value?.includes('Other')">
+          <mat-form-field class="general-full-width">
+            <mat-label>Other Energy Source</mat-label>
+            <input matInput formControlName="otherHeatingSystemEnergySource" placeholder="Specify other energy source">
+          </mat-form-field>
+        </div>
+
+
+        <div class="col-md-3">
+          <mat-form-field class="general-full-width">
+            <mat-label>Type</mat-label>
+            <mat-select formControlName="heatingSystemType" multiple>
+              <mat-option *ngFor="let option of heatingSystemTypeOptions" [value]="option">{{ option }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3" *ngIf="heatingSystemDetails.get('heatingSystemType')?.value?.includes('Other')">
+          <mat-form-field class="general-full-width">
+            <mat-label>Other Type</mat-label>
+            <input matInput formControlName="otherHeatingSystemType" placeholder="Specify other type">
+          </mat-form-field>
+        </div>
+
+
+        <div class="col-md-3">
+          <mat-form-field class="general-full-width">
+            <mat-label>Area Served</mat-label>
+            <mat-select formControlName="heatingSystemAreaServed" multiple>
+              <mat-option *ngFor="let option of heatingSystemAreaServedOptions" [value]="option">{{ option }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3" *ngIf="heatingSystemDetails.get('heatingSystemAreaServed')?.value?.includes('Other')">
+          <mat-form-field class="general-full-width">
+            <mat-label>Other Area Served</mat-label>
+            <input matInput formControlName="otherHeatingSystemAreaServed" placeholder="Specify other area served">
+          </mat-form-field>
+        </div>
+
+
+        <div class="col-md-3">
+          <mat-form-field class="general-full-width">
+            <mat-label>Thermostats</mat-label>
+            <mat-select formControlName="heatingSystemThermostats" multiple>
+              <mat-option *ngFor="let option of heatingSystemThermostatsOptions" [value]="option">{{ option }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3" *ngIf="heatingSystemDetails.get('heatingSystemThermostats')?.value?.includes('Other')">
+          <mat-form-field class="general-full-width">
+            <mat-label>Other Thermostats</mat-label>
+            <input matInput formControlName="otherHeatingSystemThermostats" placeholder="Specify other thermostats">
+          </mat-form-field>
+        </div>
+
+
+        <div class="col-md-3">
+          <mat-form-field class="general-full-width">
+            <mat-label>Distribution</mat-label>
+            <mat-select formControlName="heatingSystemDistribution" multiple>
+              <mat-option *ngFor="let option of heatingSystemDistributionOptions" [value]="option">{{ option }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3" *ngIf="heatingSystemDetails.get('heatingSystemDistribution')?.value?.includes('Other')">
+          <mat-form-field class="general-full-width">
+            <mat-label>Other Distribution</mat-label>
+            <input matInput formControlName="otherHeatingSystemDistribution" placeholder="Specify other distribution">
+          </mat-form-field>
+        </div>
+
+
+        <div class="col-md-3">
+          <mat-form-field class="general-full-width">
+            <mat-label>Interior Fuel Storage</mat-label>
+            <mat-select formControlName="heatingSystemInteriorFuelStorage" multiple>
+              <mat-option *ngFor="let option of heatingSystemInteriorFuelStorageOptions" [value]="option">{{ option }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3" *ngIf="heatingSystemDetails.get('heatingSystemInteriorFuelStorage')?.value?.includes('Other')">
+          <mat-form-field class="general-full-width">
+            <mat-label>Other Interior Fuel Storage</mat-label>
+            <input matInput formControlName="otherHeatingSystemInteriorFuelStorage" placeholder="Specify other interior fuel storage">
+          </mat-form-field>
+        </div>
+
+
+        <div class="col-md-3">
+          <mat-form-field class="general-full-width">
+            <mat-label>Gas Service Lines</mat-label>
+            <mat-select formControlName="heatingSystemGasServiceLines" multiple>
+              <mat-option *ngFor="let option of heatingSystemGasServiceLinesOptions" [value]="option">{{ option }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3" *ngIf="heatingSystemDetails.get('heatingSystemGasServiceLines')?.value?.includes('Other')">
+          <mat-form-field class="general-full-width">
+            <mat-label>Other Gas Service Lines</mat-label>
+            <input matInput formControlName="otherHeatingSystemGasServiceLines" placeholder="Specify other gas service lines">
+          </mat-form-field>
+        </div>
+
+
+        <div class="col-md-3">
+          <mat-form-field class="general-full-width">
+            <mat-label>Blower Fan</mat-label>
+            <mat-select formControlName="heatingSystemBlowerFan" multiple>
+              <mat-option *ngFor="let option of heatingSystemBlowerFanOptions" [value]="option">{{ option }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3" *ngIf="heatingSystemDetails.get('heatingSystemBlowerFan')?.value?.includes('Other')">
+          <mat-form-field class="general-full-width">
+            <mat-label>Other Blower Fan</mat-label>
+            <input matInput formControlName="otherHeatingSystemBlowerFan" placeholder="Specify other blower fan">
+          </mat-form-field>
+        </div>
+
+
+        <div class="col-md-3">
+          <mat-form-field class="general-full-width">
+            <mat-label>Filter</mat-label>
+            <mat-select formControlName="heatingSystemFilter" multiple>
+              <mat-option *ngFor="let option of heatingSystemFilterOptions" [value]="option">{{ option }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3" *ngIf="heatingSystemDetails.get('heatingSystemFilter')?.value?.includes('Other')">
+          <mat-form-field class="general-full-width">
+            <mat-label>Other Filter</mat-label>
+            <input matInput formControlName="otherHeatingSystemFilter" placeholder="Specify other filter">
+          </mat-form-field>
+        </div>
+
+        <app-image-uploader [imageName]="heatingSystemFilterImage"></app-image-uploader>
+
+
+        <div class="col-md-3">
+          <mat-form-field class="general-full-width">
+            <mat-label>Suspected Asbestos</mat-label>
+            <mat-select formControlName="heatingSystemSuspectedAsbestos" multiple>
+              <mat-option *ngFor="let option of heatingSystemSuspectedAsbestosOptions" [value]="option">{{ option }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3"  *ngIf="heatingSystemDetails.get('heatingSystemSuspectedAsbestos')?.value?.includes('Other')">
+          <mat-form-field class="general-full-width">
+            <mat-label>Other Suspected Asbestos</mat-label>
+            <input matInput formControlName="otherHeatingSystemSuspectedAsbestos" placeholder="Specify other suspected asbestos">
+          </mat-form-field>
+        </div>
+
+
+        <div class="col-md-3">
+          <mat-form-field class="general-full-width">
+            <mat-label>Operation</mat-label>
+            <mat-select formControlName="heatingSystemOperation" multiple>
+              <mat-option *ngFor="let option of heatingSystemOperationOptions" [value]="option">{{ option }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3" *ngIf="heatingSystemDetails.get('heatingSystemOperation')?.value?.includes('Other')">
+          <mat-form-field class="general-full-width">
+            <mat-label>Other Operation</mat-label>
+            <input matInput formControlName="otherHeatingSystemOperation" placeholder="Specify other operation">
+          </mat-form-field>
+        </div>
+
+        <app-image-uploader [imageName]="heatingSystemOperationImage"></app-image-uploader>
+
+        <div class="col-md-3">
+          <mat-form-field class="general-full-width">
+            <mat-label>Condition</mat-label>
+            <mat-select formControlName="heatingSystemCondition" multiple>
+              <mat-option *ngFor="let option of heatingSystemConditionOptions" [value]="option">{{ option }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3" *ngIf="heatingSystemDetails.get('heatingSystemCondition')?.value?.includes('Other')">
+          <mat-form-field class="general-full-width">
+            <mat-label>Other Condition</mat-label>
+            <input matInput formControlName="otherHeatingSystemCondition" placeholder="Specify other condition">
+          </mat-form-field>
+        </div>
+
+
+        <div class="col-md-12">
+          <mat-form-field class="general-full-width">
+            <mat-label>Comments</mat-label>
+            <textarea matInput formControlName="heatingSystemComments" placeholder="Additional comments"></textarea>
+          </mat-form-field>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+

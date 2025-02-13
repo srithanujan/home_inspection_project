@@ -1,0 +1,205 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card border-primary mb-3 custom-card">
+      <form [formGroup]="commonAreaDetails" class="row g-3">
+        <div formArrayName="commonAreas">
+          <div *ngFor="let commonArea of commonAreas.controls; let i = index" [formGroupName]="i">
+            <div class="row">
+              <h5 class="sub-head">COMMON AREAS</h5>
+              <div class="col-md-3">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Name</mat-label>
+                  <input matInput formControlName="name" required>
+                  <mat-error *ngIf="commonArea.get('name')?.hasError('required')">Common Area Name is required</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-3" style="margin-top:7px; margin-bottom: 26px;display: flex; justify-content: flex-end;">
+                <button mat-flat-button (click)="removeCommonAreas(i)" style="margin-right: 8px; background-color: #ED636D; color: white;">
+                  Remove
+                </button>
+              </div>
+            </div>
+            <div formGroupName="commonAreaswall" class="row">
+              <h6 class="sub-head">Walls</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Walls</mat-label>
+                  <mat-select formControlName="commonAreasWalls" multiple>
+                    <mat-option *ngFor="let option of commonAreasWallsOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="commonArea.get('commonAreaswall.commonAreasWalls')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="othercommonAreasWalls">
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Condition</mat-label>
+                  <mat-select formControlName="commonAreasWallsCondition" multiple>
+                    <mat-option *ngFor="let option of commonAreasWallsConditionsOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="commonArea.get('commonAreaswall.commonAreasWallsCondition')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="othercommonAreasWallsCondition">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <app-image-uploader [imageName]="commonAreasWallsImage + i"></app-image-uploader>
+
+            <div formGroupName="ceiling" class="row">
+              <h6 class="sub-head">Ceiling</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Ceiling</mat-label>
+                  <mat-select formControlName="commonAreasCeilings" multiple>
+                    <mat-option *ngFor="let option of commonAreasCeilingsOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="commonArea.get('ceiling.commonAreasCeilings')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="othercommonAreasCeilings">
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Condition</mat-label>
+                  <mat-select formControlName="commonAreasCeilingsCondition" multiple>
+                    <mat-option *ngFor="let option of commonAreasCeilingsConditionsOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="commonArea.get('ceiling.commonAreasCeilingsCondition')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="othercommonAreasCeilingsCondition">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <app-image-uploader [imageName]="commonAreasCeilingImage + i"></app-image-uploader>
+
+            <div formGroupName="floor" class="row">
+              <h6 class="sub-head">Floors</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Floors</mat-label>
+                  <mat-select formControlName="commonAreasFloors" multiple>
+                    <mat-option *ngFor="let option of commonAreasFloorsOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="commonArea.get('floor.commonAreasFloors')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="othercommonAreasFloors">
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Condition</mat-label>
+                  <mat-select formControlName="commonAreasFloorsCondition" multiple>
+                    <mat-option *ngFor="let option of commonAreasFloorsConditionsOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="commonArea.get('floor.commonAreasFloorsCondition')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="othercommonAreasFloorsCondition">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <app-image-uploader [imageName]="commonAreasFloorsImage + i"></app-image-uploader>
+
+            <div formGroupName="window" class="row">
+              <h6 class="sub-head">Window</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Window</mat-label>
+                  <mat-select formControlName="commonAreasWindows" multiple>
+                    <mat-option *ngFor="let option of commonAreasWindowsOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="commonArea.get('window.commonAreasWindows')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="othercommonAreasWindows">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <app-image-uploader [imageName]="commonAreasWindowsImage + i"></app-image-uploader>
+
+            <div formGroupName="electrical" class="row">
+              <h6 class="sub-head">Electrical</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Electrical</mat-label>
+                  <mat-select formControlName="commonAreasElectricals" multiple>
+                    <mat-option *ngFor="let option of commonAreasElectricalsOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="commonArea.get('electrical.commonAreasElectricals')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="othercommonAreasElectricals">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <app-image-uploader [imageName]="commonAreasElectricalImage + i"></app-image-uploader>
+
+            <div formGroupName="heatSource" class="row">
+              <h6 class="sub-head">Heat Source</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Heat Source</mat-label>
+                  <mat-select formControlName="commonAreasHeatSource" multiple>
+                    <mat-option *ngFor="let option of commonAreasHeatSourcesOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="commonArea.get('heatSource.commonAreasHeatSource')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="othercommonAreasHeatSource">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <app-image-uploader [imageName]="commonAreasHeatSourceImage + i"></app-image-uploader>
+
+            <div class="col-md-12">
+              <mat-form-field class="general-full-width">
+                <mat-label>Comments</mat-label>
+                <input matInput formControlName="commonAreasComments">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <button mat-flat-button (click)="addCommonAreas()" [disabled]="!commonAreaDetails.valid">
+            Add Common Area
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+

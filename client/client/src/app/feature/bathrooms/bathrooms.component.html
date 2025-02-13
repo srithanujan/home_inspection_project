@@ -1,0 +1,447 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card border-primary mb-3 custom-card">
+      <form [formGroup]="bathroomsDetails" class="row g-3">
+        <div formArrayName="bathrooms">
+          <div *ngFor="let bathroom of bathrooms?.controls; let i = index" [formGroupName]="i">
+            <div class="row">
+              <h5 class="sub-head">BATHROOM</h5>
+              <div class="col-md-3">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Name</mat-label>
+                  <input matInput formControlName="name" required>
+                  <mat-error *ngIf="bathroom.get('name')?.hasError('required')">Bathroom Name is required</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-3" style="margin-top:7px; margin-bottom: 26px;display: flex; justify-content: flex-end;">
+                <button mat-flat-button (click)="removeBathroom(i)" style="margin-right: 8px; background-color: #ED636D; color: white;">
+                  Remove
+                </button>
+              </div>
+            </div>
+
+            <div formGroupName="bathroomFloors" class="row">
+              <h6 class="sub-head">Floor</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Floor</mat-label>
+                  <mat-select formControlName="bathroomFloorsMaterial" multiple>
+                    <mat-option *ngFor="let option of floorMaterialOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="bathroom.get('bathroomFloors.bathroomFloorsMaterial')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherBathroomFloorsMaterial">
+                </mat-form-field>
+              </div>
+              <div class="col-md-12">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Condition</mat-label>
+                  <mat-select formControlName="bathroomFloorsCondition" multiple>
+                    <mat-option *ngFor="let option of floorConditionOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-12" *ngIf="bathroom.get('bathroomFloors.bathroomFloorsCondition')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherBathroomCondition">
+                </mat-form-field>
+              </div>
+            </div>
+
+
+            <app-image-uploader [imageName]="bathroomFloorImage + i"></app-image-uploader>
+
+
+            <div formGroupName="bathroomWalls" class="row">
+              <h6 class="sub-head">Walls</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Walls</mat-label>
+                  <mat-select formControlName="bathroomsWallsMaterial" multiple>
+                    <mat-option *ngFor="let option of wallMaterialOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="bathroom.get('bathroomWalls.bathroomsWallsMaterial')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherBathromsWallsMaterial">
+                </mat-form-field>
+              </div>
+              <div class="col-md-12">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Condition</mat-label>
+                  <mat-select formControlName="bathroomWallsCondition" multiple>
+                    <mat-option *ngFor="let option of wallConditionOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-12" *ngIf="bathroom.get('bathroomWalls.bathroomWallsCondition')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherBathroomWallsCondition">
+                </mat-form-field>
+              </div>
+            </div>
+
+
+
+            <app-image-uploader [imageName]="bathroomWallImage + i"></app-image-uploader>
+
+
+            <div formGroupName="bathroomCeilings" class="row">
+              <h6 class="sub-head">Ceiling</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Ceiling</mat-label>
+                  <mat-select formControlName="bathroomCeilingsMaterial" multiple>
+                    <mat-option *ngFor="let option of ceilingMaterialOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="bathroom.get('bathroomCeilings.bathroomCeilingsMaterial')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherBathroomCeilingsMaterial">
+                </mat-form-field>
+              </div>
+              <div class="col-md-12">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Condition</mat-label>
+                  <mat-select formControlName="bathroomCeilingsCondition" multiple>
+                    <mat-option *ngFor="let option of ceilingConditionOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-12" *ngIf="bathroom.get('bathroomCeilings.bathroomCeilingsCondition')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherBathroomCeilingsCondition">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <app-image-uploader [imageName]="bathroomCeilingImage + i"></app-image-uploader>
+
+
+            <div formGroupName="bathroomDoors" class="row">
+              <h6 class="sub-head">Door</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Walls</mat-label>
+                  <mat-select formControlName="bathroomDoorsMaterial" multiple>
+                    <mat-option *ngFor="let option of doorMaterialOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="bathroom.get('bathroomDoors.bathroomDoorsMaterial')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherBathroomDoorsMaterial">
+                </mat-form-field>
+              </div>
+              <div class="col-md-12">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Condition</mat-label>
+                  <mat-select formControlName="bathroomDoorsCondition" multiple>
+                    <mat-option *ngFor="let option of doorConditionOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-12" *ngIf="bathroom.get('bathroomDoors.bathroomDoorsCondition')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherBathroomDoorsCondition">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <app-image-uploader [imageName]="bathroomDoorImage + i"></app-image-uploader>
+
+            <div formGroupName="bathroomWindows" class="row">
+              <h6 class="sub-head">Windows</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Windows</mat-label>
+                  <mat-select formControlName="bathroomWindowsMaterial" multiple>
+                    <mat-option *ngFor="let option of windowConditionOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="bathroom.get('bathroomWindows.bathroomWindowsMaterial')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherBathroomWindowsMaterial">
+                </mat-form-field>
+              </div>
+            </div>
+
+
+            <app-image-uploader [imageName]="bathroomWindowsImage + i"></app-image-uploader>
+
+
+            <div formGroupName="bathroomElectricals" class="row">
+              <h6 class="sub-head">Electrical</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Electrical</mat-label>
+                  <mat-select formControlName="bathroomElectricalsMaterial" multiple>
+                    <mat-option *ngFor="let option of electricalOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="bathroom.get('bathroomElectricals.bathroomElectricalsMaterial')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherBathroomElectricalsMaterial">
+                </mat-form-field>
+              </div>
+            </div>
+
+
+            <app-image-uploader [imageName]="bathroomElectricalImage + i"></app-image-uploader>
+
+            <div formGroupName="bathroomCounterCabinets" class="row">
+              <h6 class="sub-head">Counter/Cabinet</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Counter/Cabinet</mat-label>
+                  <mat-select formControlName="bathroomCounterCabinetsMaterial" multiple>
+                    <mat-option *ngFor="let option of counterCabinetOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="bathroom.get('bathroomCounterCabinets.bathroomCounterCabinetsMaterial')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherBathroomCounterCabinetsMaterial">
+                </mat-form-field>
+              </div>
+            </div>
+
+
+            <app-image-uploader [imageName]="bathroomCounterCabinetImage + i"></app-image-uploader>
+
+
+            <div formGroupName="bathroomSinkBasins" class="row">
+              <h6 class="sub-head">Sink/Basin</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Sink/Basin</mat-label>
+                  <mat-select formControlName="bathroomSinkBasinsMaterial" multiple>
+                    <mat-option *ngFor="let option of sinkBasinOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="bathroom.get('bathroomSinkBasins.bathroomSinkBasinsMaterial')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherBathroomSinkBasinsMaterial">
+                </mat-form-field>
+              </div>
+            </div>
+
+
+            <div formGroupName="bathroomPlumbings" class="row">
+              <h6 class="sub-head">Plumbing</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Plumbing</mat-label>
+                  <mat-select formControlName="bathroomPlumbingsMaterial" multiple>
+                    <mat-option *ngFor="let option of plumbingOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="bathroom.get('bathroomPlumbings.bathroomPlumbingsMaterial')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherBathroomPlumbingsMaterial">
+                </mat-form-field>
+              </div>
+            </div>
+
+
+            <app-image-uploader [imageName]="bathroomPlumbingImage + i"></app-image-uploader>
+
+            <div formGroupName="bathroomToilets" class="row">
+              <h6 class="sub-head">Toilet</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Toilet</mat-label>
+                  <mat-select formControlName="bathroomToiletsMaterial" multiple>
+                    <mat-option *ngFor="let option of toiletOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="bathroom.get('bathroomToilets.bathroomToiletsMaterial')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherbathroomToiletsMaterial">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <app-image-uploader [imageName]="bathroomToiletImage + i"></app-image-uploader>
+
+            <div formGroupName="bathroomBathtubs" class="row">
+              <h6 class="sub-head">Bathtub</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Bathtub</mat-label>
+                  <mat-select formControlName="bathroomBathtubsMaterial" multiple>
+                    <mat-option *ngFor="let option of bathtubOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="bathroom.get('bathroomBathtubs.bathroomBathtubsMaterial')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherBathroomBathtubsMaterial">
+                </mat-form-field>
+              </div>
+            </div>
+
+
+            <div formGroupName="bathroomStandingShowers" class="row">
+              <h6 class="sub-head">Standing Shower</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Standing Shower</mat-label>
+                  <mat-select formControlName="bathroomStandingShowersMaterial" multiple>
+                    <mat-option *ngFor="let option of bathtubOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="bathroom.get('bathroomStandingShowers.bathroomStandingShowersMaterial')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherBathroomStandingShowersMaterial">
+                </mat-form-field>
+              </div>
+            </div>
+
+
+            <app-image-uploader [imageName]="bathroomStandingShowerImage + i"></app-image-uploader>
+
+
+            <div formGroupName="bathroomFaucets" class="row">
+              <h6 class="sub-head">Faucets</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Faucets</mat-label>
+                  <mat-select formControlName="bathroomFaucetsMaterial" multiple>
+                    <mat-option *ngFor="let option of faucetOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="bathroom.get('bathroomFaucets.bathroomFaucetsMaterial')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherBathroomFaucetsMaterial">
+                </mat-form-field>
+              </div>
+            </div>
+
+
+            <app-image-uploader [imageName]="bathroomFaucetsImage + i"></app-image-uploader>
+
+            <div formGroupName="bathroomWaterFlows" class="row">
+              <h6 class="sub-head">Water flow</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Water flow</mat-label>
+                  <mat-select formControlName="bathroomWaterFlowsMaterial" multiple>
+                    <mat-option *ngFor="let option of waterFlowOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="bathroom.get('bathroomWaterFlows.bathroomWaterFlowsMaterial')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherBathroomWaterFlowsMaterial">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div formGroupName="bathroomMoistureStains" class="row">
+              <h6 class="sub-head">Moisture Stains Present</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Moisture Stains Present</mat-label>
+                  <mat-select formControlName="bathroomMoistureStainsMaterial" multiple>
+                    <mat-option *ngFor="let option of moistureStainsOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="bathroom.get('bathroomMoistureStains.bathroomMoistureStainsMaterial')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherBathroomMoistureStainsMaterial">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <app-image-uploader [imageName]="bathroomMoistureStainsPresentImage + i"></app-image-uploader>
+
+            <div formGroupName="bathroomHeatSources" class="row">
+              <h6 class="sub-head">Heat Source</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Heat Source</mat-label>
+                  <mat-select formControlName="bathroomHeatSourcesMaterial" multiple>
+                    <mat-option *ngFor="let option of heatSourceOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="bathroom.get('bathroomHeatSources.bathroomHeatSourcesMaterial')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherBathroomHeatSourcesMaterial">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div formGroupName="bathroomVentilations" class="row">
+              <h6 class="sub-head">Ventilation</h6>
+              <div class="col-md-6">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Ventilation</mat-label>
+                  <mat-select formControlName="bathroomVentilationsMaterial" multiple>
+                    <mat-option *ngFor="let option of ventilationOptions" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6" *ngIf="bathroom.get('bathroomVentilations.bathroomVentilationsMaterial')?.value?.includes('Other')">
+                <mat-form-field class="general-full-width">
+                  <mat-label>Other</mat-label>
+                  <input matInput formControlName="otherbathroomVentilationsMaterial">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <app-image-uploader [imageName]="bathroomVentilationImage + i"></app-image-uploader>
+
+            <div class="col-md-6">
+              <mat-form-field class="general-full-width">
+                <mat-label>Comments</mat-label>
+                <input matInput formControlName="bathroomComments">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <button mat-flat-button
+          (click)="addBathroom()"
+          [disabled]="!bathroomsDetails.valid">
+    Add Bathroom
+  </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

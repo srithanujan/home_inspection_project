@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card border-primary mb-3 custom-card">
+      <div class="button-container">
+        <button mat-flat-button matStepperNext class="mat-flat-button color_create" (click)="addFullInspectionDetails()">Create</button>
+      </div>
+      &nbsp;
+      <table mat-table [dataSource]="dataSource" >
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="inspectionName">
+          <th mat-header-cell *matHeaderCellDef>Inspection Name</th>
+          <td mat-cell *matCellDef="let element"> {{element?.inspections}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          <td mat-cell *matCellDef="let element">
+            <span><button mat-mini-fab class="edit-icon" (click)="redirectToSpecificInspection(element?.id)">
+              <mat-icon class="material-icons color_edit" >edit</mat-icon>
+            </button></span>
+            &nbsp;
+             <span><button mat-mini-fab class="delete-icon" (click)="deleteInspection(element?.id)">
+              <mat-icon class="material-icons color_delete">delete</mat-icon>
+            </button></span>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+    </div>
+</div>
+
+
+<!-- // <mat-icon class="material-icons color_delete">games</mat-icon>
+// <mat-icon class="material-icons color_edit">cloud</mat-icon> -->
